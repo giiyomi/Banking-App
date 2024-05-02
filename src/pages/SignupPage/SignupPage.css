@@ -1,0 +1,83 @@
+ .regPage{
+
+    background-image: linear-gradient( rgb(255, 255, 255), rgb(255, 200, 190));
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.userInformation{
+    box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+    border-radius: 30px;
+    height: 390px;
+    width: 700px;
+    margin: auto;
+    margin-top: 5%;
+    padding: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.regTitle{
+    font-size: 200%;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+    color: rgb(180,65,55);
+}
+
+.regForm{
+    gap: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+
+}
+.regFormLabels{
+    font-weight: 400;
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+}
+
+.regFormLabels label{
+    font-size: 150%;
+    padding: 5px 0px;
+}
+.regFormInputs{
+
+    flex: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.regFormInputs input{
+    background-color: rgb(255,251,251);
+    border: 0px;
+    border-radius: 10px;
+    font-size: 140%;
+    width: 300px;
+    margin: 5px 0px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0,0,0,.5);
+}
+
+.signUp{
+    margin: 1%;
+    color: white;
+    background-image: linear-gradient(to right, rgb(230,120,115), rgb(180, 65, 60));
+    padding: 10px 220px;
+    border-radius: 30px;
+    font-size: 130%; 
+    border: 0px;
+
+}
