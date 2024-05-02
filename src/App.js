@@ -1,4 +1,4 @@
-
+import AppUi from './components/AppUi';
 import './App.css';
 import ContactUs from './components/ContactUs/ContactUs';
 import SignUp from './pages/SignupPage/SignupPage';
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <SignUp></SignUp>
       <ContactUs></ContactUs>
-
+      <AppUi></AppUi>
     </div>
   );
 }
