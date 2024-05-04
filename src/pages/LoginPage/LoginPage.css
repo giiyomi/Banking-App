@@ -1,77 +1,16 @@
 .loginPage{
-    left: 0;
-    padding: 0px;
-    margin: 0px;
-    background-image: linear-gradient( rgb(255, 255, 255), rgb(255, 200, 190));
-    width: 100%;
-    height: 95%;
+    background-image: linear-gradient( rgb(255, 255, 255), rgb(255, 200, 200));
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-.loginCreditials {
-    border-radius: 30px;
-    height: 390px;
-    width: 700px;
-    margin: auto;
-    margin-top: 1%;
-    padding: 2%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
     align-content: center;
-    flex-direction: column;
-    gap: 40px;
 }
 
-.loginTitle{
-    font-size: 180%;
-    font-weight: 700;
-    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
-    color: rgba(0,0,0,.8);
-}
-
-.loginForm{
-    display: flex;
-    flex-direction: column;
-}
-
-.loginForm input{
-    background-color: rgb(255,250,250);
-    border: 0px;
-    border-radius: 20px;
-    font-size: 140%;
-    height: 40px;
-    width: 500px;
-    margin: 10px 0px;
-    text-align: center;
-    box-shadow: 2px 2px 8px rgba(0,0,0,.5);
-}
-
-.login{
-    padding: 10px 220px;
-    margin: 1%;
-    color: white;
-    background-image: linear-gradient(to right, rgb(230,120,115), rgb(180, 65, 60));
-    border-radius: 30px;
-    box-shadow: 15px 15px 10px rgba(0,0,0,.3);
-    font-size: 130%; 
-    border: 0px;
-}
-.login:hover{
-    cursor: pointer;
-}
-
-.noAccount{
-    display: flex;
-    gap: 5px;
-    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
-}
-
-.noAccountSignUp{
-    color: rgb(180,65,55);
-    text-decoration: underline;
-}
-.noAccountSignUp:hover{
-    cursor: pointer;
+@media (max-width:800px){
+    .loginPage{
+        justify-content: space-between;
+        align-content: center;
+    }
 }

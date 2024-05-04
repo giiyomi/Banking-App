@@ -1,4 +1,4 @@
- .regPage{
+.backgroundPage{
     background-image: linear-gradient( rgb(255, 255, 255), rgb(255, 200, 200));
     width: 100vw;
     height: 100vh;
@@ -8,14 +8,22 @@
 }
 
 
+.avionbankLogo{
+    text-align: center;
+    justify-content: center;
+}
+
+
 @media (max-width:800px){
-    .regPage{
+    .backgroundPage{
         justify-content: space-between;
         align-content: center;
     }
+
 }
+
 @media (max-height:700px){
-    .regPage{
+    .backgroundPage{
         justify-content: space-between;
         align-content: center;
         min-height: 480px;

@@ -1,29 +1,15 @@
 import "./LoginPage.css"
-import Avionbanklogo from "../../assets/images/avionbank_logo2.png"
+import ContactUs from '../components/ContactUs/ContactUs';
+import AvionbankLogo from "../components/AvionbankLogo/AvionbankLogo";
+import LoginCredentials from "./components/LoginCredentials";
 
 
 function LoginPage(){
     return (
     <div className="loginPage">
-        <div className="logoReg">
-            <img src={Avionbanklogo}></img>
-        </div>
-
-        <div className="loginCreditials">
-            <div className="loginTitle">
-                Log in to Avion Bank
-            </div>
-            <form className="loginForm">
-                <input type="text" name="userName" placeholder="Username" required></input>
-                <input type="text" name="lastname" placeholder="Password" required></input>
-            </form>
-            <button type="submit" className="login">Log In</button>
-
-            <div className="noAccount">
-                <p>Don't Have an account?</p>
-                <p className="noAccountSignUp">Sign Up</p>
-            </div>
-        </div>
+        <AvionbankLogo></AvionbankLogo>
+        <LoginCredentials></LoginCredentials>
+        <ContactUs></ContactUs>
     </div>
     )
 }
