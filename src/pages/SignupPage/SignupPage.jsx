@@ -8,11 +8,13 @@ import ContactUs from '../components/ContactUs/ContactUs';
 
 
 
-function SignupPage(){
+function SignupPage(props){
+    const {credentialsContainer, newId} = props
+
     return (
         <div className="regPage">
             <AvionbankLogo></AvionbankLogo>
-            <SignupForm></SignupForm>
+            <SignupForm credentialsContainer={credentialsContainer} newId={newId}></SignupForm>
 
             <ContactUs></ContactUs>
         </div>

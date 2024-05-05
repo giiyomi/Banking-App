@@ -4,11 +4,12 @@ import AvionbankLogo from "../components/AvionbankLogo/AvionbankLogo";
 import LoginCredentials from "./components/LoginCredentials";
 
 
-function LoginPage(){
+function LoginPage(props){
+    const {loginCredentials} = props
     return (
     <div className="loginPage">
         <AvionbankLogo></AvionbankLogo>
-        <LoginCredentials></LoginCredentials>
+        <LoginCredentials loginCredentials={loginCredentials}></LoginCredentials>
         <ContactUs></ContactUs>
     </div>
     )
