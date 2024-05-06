@@ -1,10 +1,10 @@
 .userInformation{
     box-shadow: 5px 5px 15px rgba(0,0,0,.5);
     border-radius: 20px;
-    height: 500px;
+    height: 690px;
     width: 700px;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 3%;
     padding: 2%;
     display: flex;
     justify-content: flex-start;
@@ -22,13 +22,37 @@
 }
 
 .regForm{
-    gap: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+    flex-direction: column;
 }
+
+.personalInfo{
+    gap: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.titlesInForms{
+    font-size: 150%;
+    padding: 5px 0px;
+
+
+}
+
+.createanAccount{
+    gap: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
 .regFormLabels{
     font-weight: 400;
     text-wrap: nowrap;
@@ -328,7 +352,7 @@
     .userInformation{
         padding: 0%;
         margin: auto;
-        width: 600px;
+        width: 500px;
         height: 400px;
         justify-content: center;
     }

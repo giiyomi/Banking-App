@@ -4,6 +4,8 @@ import SignupPage from '../../SignupPage/SignupPage'
 
 
 function Dashboard(){
+
+    
     return (
         <div className='mainContainer'>
             <h1>Dashboard</h1>
@@ -14,9 +16,8 @@ function Dashboard(){
             </div>
             <div className='userInfo'>
                 <div className='userDetail'>
-                    <h6>Account Name: 
-                    <br/>
-                    <span>John Doe</span>
+                    <h6>Account Manager: 
+                    <span>John Smith</span>
                     </h6>
                 </div>
                 <div className='userDetail2'>

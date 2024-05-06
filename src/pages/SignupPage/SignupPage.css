@@ -18,6 +18,15 @@
     .regPage{
         justify-content: space-between;
         align-content: center;
-        min-height: 480px;
+        min-height: 700px;
+    }
+}
+
+@media (max-height:500px){
+    .regPage{
+        justify-content: space-between;
+        align-content: center;
+        min-height: 700px;
+        width: 600px;
     }
 }

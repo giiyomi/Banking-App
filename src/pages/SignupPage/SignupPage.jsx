@@ -15,7 +15,6 @@ function SignupPage(props){
         <div className="regPage">
             <AvionbankLogo></AvionbankLogo>
             <SignupForm credentialsContainer={credentialsContainer} newId={newId}></SignupForm>
-
             <ContactUs></ContactUs>
         </div>
     )

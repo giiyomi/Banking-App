@@ -19,11 +19,12 @@ function App() {
     });
   }
 
+
   return (
     <div className="App">
     <LoginPage loginCredentials={loginCredentials}></LoginPage>
     <SignupPage credentialsContainer={credentialsContainer} newId={loginCredentials.length}></SignupPage>
-    <MainPage></MainPage>
+    <MainPage loginCredentials={loginCredentials}></MainPage>
     </div>
 
   );

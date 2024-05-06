@@ -3,18 +3,18 @@ import './LoginCredentials.css'
 
 
 
-function LoginCredentials(props){//dito ayaw lumabas dun sa import kaya hinook ko nalang
+function LoginCredentials(props){
     const {loginCredentials} = props
 
     const alertLogin = (e) => {
         e.preventDefault();
         const userNameInput = e.target.elements.userName.value;
         const passwordInput = e.target.elements.password.value;
-        const isValidCredential = loginCredentials.some(credential => credential.user_name === userNameInput && credential.password === passwordInput);
+        const matchedCredential = loginCredentials.find(credential => credential.user_name === userNameInput && credential.password === passwordInput);
 
-        if (isValidCredential) {
+        if (matchedCredential) {
             alert("You have successfully logged in");
-            successLogin();
+            successLogin(e);
         } else {
             alert("Invalid username or password. Please try again.");
         }
