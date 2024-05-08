@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import './Dashboard.css';
 import SignupPage from '../../SignupPage/SignupPage'
 import goldChip from '../../../assets/images/goldchip.png'
@@ -9,23 +8,16 @@ function Dashboard(props){
     const {loginCredentials, usernameHolder} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
-    const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
-    const adminButton = document.querySelector('.adminButton')
 
-    const hoverTooltip = () => addAccountUserTooltip.style.display ="block"
-    useEffect(() => {
-        const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
-
-        if (addAccountUserTooltip) {
-            addAccountUserTooltip.addEventListener('mouseenter', () => {
-                addAccountUserTooltip.style.display = 'block';
-            });
-            adminButton.addEventListener('mouseleave', () => {
-                addAccountUserTooltip.style.display = 'none';
-            });
+        const onMouseTooltip = () => {
+            const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
+            addAccountUserTooltip.style.display = "block"
         }
-    }, []);
-    
+        const offMouseTooltip = () => {
+            const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
+            addAccountUserTooltip.style.display = "none"
+        }    
+
 
     return (
         <div className='mainContainer'>
@@ -34,7 +26,7 @@ function Dashboard(props){
                 <div className='addAccountUserTooltip'>
                     Add an account user here.
                 </div>
-                <button className='adminButton'onMouseEnter={hoverTooltip}>
+                <button className='adminButton' onMouseEnter={onMouseTooltip} onMouseLeave={offMouseTooltip}>
                 <a href={SignupPage}><i class="fa-solid fa-user-gear" ></i></a>
                 </button>
             </div>
