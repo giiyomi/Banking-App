@@ -1,17 +1,18 @@
-
 import './App.css';
 import MainPage from './pages/MainPage/MainPage';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import loginCredentialsArray from './assets/data/loginCredentials.json';
 import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+
 
 function App() {
   const [loginCredentials, setNewCredentials] = useState(loginCredentialsArray);
+  const [userName, findUserName] = useState('');
 
   const credentialsContainer = (newCredentials) => {
-
     setNewCredentials((prevCredentials) => {
       const updatedCredentialSet = [...prevCredentials, newCredentials];
       console.log(updatedCredentialSet)
@@ -19,12 +20,44 @@ function App() {
     });
   }
 
+  const usernameHolder = () => {
+    console.log(userName)
+    return userName;
+}
 
   return (
     <div className="App">
-    <LoginPage loginCredentials={loginCredentials}></LoginPage>
-    <SignupPage credentialsContainer={credentialsContainer} newId={loginCredentials.length}></SignupPage>
-    <MainPage loginCredentials={loginCredentials}></MainPage>
+      <Router>
+        <Routes>
+        <Route index element={<LoginPage/>}/>
+
+          <Route path='/loginpage'
+            element={
+            <LoginPage
+              loginCredentials={loginCredentials}
+              findUserName={findUserName}
+              usernameHolder={usernameHolder}>
+            </LoginPage>}/>
+
+          <Route path='/signuppage' 
+            element={
+              <SignupPage 
+                credentialsContainer={credentialsContainer} 
+                newId={loginCredentials.length} 
+                loginCredentials={loginCredentials}>
+              </SignupPage>}>
+          </Route>  
+
+          <Route path='/mainpage' 
+            element={
+              <MainPage
+                loginCredentials={loginCredentials}
+                usernameHolder={usernameHolder}>
+              </MainPage>}>
+          </Route>
+
+        </Routes>
+      </Router>
     </div>
 
   );

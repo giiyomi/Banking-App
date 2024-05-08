@@ -1,37 +1,75 @@
+import React, { useEffect } from 'react';
 import './Dashboard.css';
 import SignupPage from '../../SignupPage/SignupPage'
+import goldChip from '../../../assets/images/goldchip.png'
+import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
 
 
+function Dashboard(props){
+    const {loginCredentials, usernameHolder} = props
+    const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
+    const index = loginCredentials.indexOf(sameUserName); 
+    const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
+    const adminButton = document.querySelector('.adminButton')
 
-function Dashboard(){
+    const hoverTooltip = () => addAccountUserTooltip.style.display ="block"
+    useEffect(() => {
+        const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
 
+        if (addAccountUserTooltip) {
+            addAccountUserTooltip.addEventListener('mouseenter', () => {
+                addAccountUserTooltip.style.display = 'block';
+            });
+            adminButton.addEventListener('mouseleave', () => {
+                addAccountUserTooltip.style.display = 'none';
+            });
+        }
+    }, []);
     
+
     return (
         <div className='mainContainer'>
-            <h1>Dashboard</h1>
+            <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
-                <button className='adminButton'>
-                    <a href={SignupPage}><i class="fa-solid fa-user-gear"></i></a>
+                <div className='addAccountUserTooltip'>
+                    Add an account user here.
+                </div>
+                <button className='adminButton'onMouseEnter={hoverTooltip}>
+                <a href={SignupPage}><i class="fa-solid fa-user-gear" ></i></a>
                 </button>
             </div>
             <div className='userInfo'>
-                <div className='userDetail'>
-                    <h6>Account Manager: 
-                    <span>John Smith</span>
-                    </h6>
+                <div className='accountManager'>
+                    <h6>Account Manager:</h6>
+                    <span>
+                        {loginCredentials[index].first_name} {loginCredentials[index].last_name}
+                    </span>                        
+
                 </div>
-                <div className='userDetail2'>
-                    <h6>Account Number:
-                    <br/>
-                    <span>98712332</span>
-                    </h6>
+                <div className='accountUser'>
+                    <h6>Account User:</h6>
+                    <span>Unknown</span>
+
                 </div>
             </div>
             <div className='userDetail3'>
-                <h2>Balance:
-                    <br/>
-                    <span>₱5,000</span>
-                </h2>
+                <div className='displayBalance'>
+                    <div className='personalBalance'>
+                        <h2>₱6,000</h2>
+                    </div>
+                    <div className='overallBalance'>
+                        <h6> Total Balance</h6>
+                        <h6>₱10,000</h6>
+                    </div>
+                </div>
+                <div className='cardDesign'>
+                    <div className='avionBankLogo'>
+                        <img src={AvionBankLogo} alt="AvionBank_logo"/>
+                    </div>
+                    <div className='goldChip'>
+                        <img src={goldChip} alt="gold_chip"/>
+                    </div>
+                </div>
             </div>
             <div className='btDiv'>
                 <button className='buttons'>Send Money</button>

@@ -1,10 +1,11 @@
 import './LoginCredentials.css'
-// import loginCredentials from '../../../assets/data/loginCredentials.json'
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 
 function LoginCredentials(props){
-    const {loginCredentials} = props
+    const {loginCredentials,findUserName,usernameHolder} = props
+    const navigate = useNavigate (); 
 
     const alertLogin = (e) => {
         e.preventDefault();
@@ -14,26 +15,14 @@ function LoginCredentials(props){
 
         if (matchedCredential) {
             alert("You have successfully logged in");
-            successLogin(e);
+            navigate("/mainpage");
         } else {
             alert("Invalid username or password. Please try again.");
         }
+
+        usernameHolder(findUserName)
     }
 
-    const successLogin = () => {
-        console.log("tagumpay")
-        const loginPage = document.querySelector(".loginPage")
-        loginPage.style.display = "none"
-        const mainPage = document.querySelector(".mainPage")
-        mainPage.style.display = "flex"
-    }
-
-    const openSigninPage = () => {
-        const signupPage = document.querySelector(".regPage")
-        signupPage.style.display = "flex"
-        const loginPage = document.querySelector(".loginPage")
-        loginPage.style.display = "none"
-    }
 
     return (
         <div className="loginCredentials">
@@ -42,7 +31,13 @@ function LoginCredentials(props){
             </div>
             <form className="loginForm" onSubmit={alertLogin}>
                 <div className="loginInputs">
-                    <input type="text" name="userName" placeholder="Username" required></input>
+                    <input
+                        type="text"
+                        name="userName"
+                        placeholder="Username"
+                        onChange={(e) => findUserName(e.target.value)} 
+                        required>
+                    </input>
                     <input type="password" name="password" placeholder="Password" required></input>
                 </div>
                 <button type="submit" className="login">
@@ -52,7 +47,7 @@ function LoginCredentials(props){
 
             <div className="noAccount">
                 <p>Don't Have an account?</p>
-                <p className="noAccountSignUp" onClick={openSigninPage}>Sign Up</p>
+                <p className="noAccountSignUp"><NavLink to='/signuppage'>Sign Up</NavLink></p>
             </div>
         </div>
     )

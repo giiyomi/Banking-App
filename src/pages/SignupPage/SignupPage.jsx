@@ -9,12 +9,12 @@ import ContactUs from '../components/ContactUs/ContactUs';
 
 
 function SignupPage(props){
-    const {credentialsContainer, newId} = props
+    const {credentialsContainer, newId, loginCredentials} = props
 
     return (
         <div className="regPage">
             <AvionbankLogo></AvionbankLogo>
-            <SignupForm credentialsContainer={credentialsContainer} newId={newId}></SignupForm>
+            <SignupForm credentialsContainer={credentialsContainer} newId={newId} loginCredentials={loginCredentials}></SignupForm>
             <ContactUs></ContactUs>
         </div>
     )

@@ -1,9 +1,12 @@
 import './SignupForm.css'
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
 // import loginCredentialsArray from '../../../assets/data/loginCredentials.json'
 
 function SignupForm(props) {
-    const {credentialsContainer, newId} = props
+    const {credentialsContainer, newId, loginCredentials} = props
     const [firstNameValue, firstName] = useState('');
     const [lastNameValue, lastName] = useState('');
     const [usernameValue, userName] = useState('');
@@ -11,13 +14,41 @@ function SignupForm(props) {
     const [confirmedPwValue, confirmedpassWord] = useState('');
     const [cpnumberValue, phoneNumber] = useState('');
     const [emailValue, email] = useState('');
+    const navigate = useNavigate ();
 
 
     const addLoginCredentials = (e) => {
         e.preventDefault();
 
+        const userExists = loginCredentials.find(credential => 
+            credential.first_name === firstNameValue && 
+            credential.last_name === lastNameValue
+        );
+        const emailExists = loginCredentials.find(credential => 
+            credential.email === emailValue
+        );
+        const cpnumberExists = loginCredentials.find(credential => 
+            credential.phone_number === cpnumberValue
+        );
+        const usernameExists = loginCredentials.find(credential => 
+            credential.user_name === usernameValue
+        );
+
+
         if (passwordValue !== confirmedPwValue) {
             alert("Password and Confirm Password should match!");
+            return; 
+        } else if (userExists) {
+            alert("User already exists.");
+            return;
+        } else if (emailExists) {
+            alert("Email address is already registered.");
+            return;
+        } else if (cpnumberExists) {
+            alert("Phone number is already registered.");
+            return;
+        } else if (usernameExists) {
+            alert("Username is already used.");
             return;
         }
 
@@ -42,14 +73,7 @@ function SignupForm(props) {
         confirmedpassWord('');
         phoneNumber('');
         email('');
-        accountCreated()
-    }
-
-    const accountCreated = () => {
-        const signupPage = document.querySelector(".regPage")
-        signupPage.style.display = "none"
-        const loginPage = document.querySelector(".loginPage")
-        loginPage.style.display = "flex"
+        navigate("/loginpage");
     }
 
     return (
