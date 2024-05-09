@@ -9,7 +9,6 @@ function Dashboard(props){
  
     let open = true;
     const totalBalance = accountUserCredentials.reduce((total, account) => {
-        // Gamitin ang regular expression upang alisin ang lahat ng hindi numerong characters mula sa initial_balance
         const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
     
         if (balance.toString().length > 8) { 

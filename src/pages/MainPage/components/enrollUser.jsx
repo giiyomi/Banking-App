@@ -31,6 +31,9 @@ const EnrollUser = (props) => {
         } else if(initialBalValue.startsWith("₱-") || initialBalValue.startsWith("₱0") || initialBalValue === "₱") {
             alert("Please enter a valid amount.")
             return;
+        } else if (!/^\₱?\d+(\.\d+)?$/.test(initialBalValue)) {
+            alert("Please enter a valid amount.");
+            return;
         }
 
         const newAccUserObject = {
