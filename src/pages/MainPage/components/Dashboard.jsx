@@ -8,17 +8,23 @@ function Dashboard(props){
     const index = loginCredentials.indexOf(sameUserName); 
  
     let open = true;
-
     const totalBalance = accountUserCredentials.reduce((total, account) => {
-        const balance = Number(account.initial_balance.slice(1));
-        const newBalance = !isNaN(balance) ? total + balance : total;
+        // Gamitin ang regular expression upang alisin ang lahat ng hindi numerong characters mula sa initial_balance
+        const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
     
-        if (newBalance.toString().length > 8) {
-            return `${newBalance.toLocaleString().slice(0, 9)}...`;
+        if (balance.toString().length > 8) { 
+            return total + balance;
         } else {
-            return newBalance.toLocaleString();
+            return total + balance;
         }
     }, 0);
+    
+    const formattedTotalBalance = totalBalance.toLocaleString();
+    
+
+    
+    
+    
         
     
     const onMouseViewUsers = () => {
@@ -101,7 +107,8 @@ function Dashboard(props){
 
                     <div className='overallBalance'>
                         <h6> Total Balance</h6>
-                        <h6>{`₱${(totalBalance)}`}</h6>
+                        <h6>{`₱${formattedTotalBalance.length > 10 ? formattedTotalBalance.slice(0, 9) + '...' : formattedTotalBalance}`}</h6>
+
                     </div>
                 </div>
                 <div className='cardDesign'>
