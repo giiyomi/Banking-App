@@ -1,33 +1,63 @@
 import './Dashboard.css';
-import SignupPage from '../../SignupPage/SignupPage'
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
 
-
 function Dashboard(props){
-    const {loginCredentials, usernameHolder} = props
+    const {loginCredentials, usernameHolder, accountUserCredentials} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
+ 
+    let open = true;
 
-        const onMouseTooltip = () => {
-            const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
-            addAccountUserTooltip.style.display = "block"
+    const totalBalance = accountUserCredentials.reduce((total, account) => {
+        const balance = Number(account.initial_balance.slice(1));
+        const newBalance = !isNaN(balance) ? total + balance : total;
+    
+        if (newBalance.toString().length > 8) {
+            return `${newBalance.toLocaleString().slice(0, 9)}...`;
+        } else {
+            return newBalance.toLocaleString();
         }
-        const offMouseTooltip = () => {
-            const addAccountUserTooltip = document.querySelector('.addAccountUserTooltip');
-            addAccountUserTooltip.style.display = "none"
-        }    
+    }, 0);
+        
+    
+    const onMouseViewUsers = () => {
+        const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
+        onMouseViewUsers.style.opacity = "1";
+        onMouseViewUsers.style.transition = "1s";
+        onMouseViewUsers.classList.add('show-tooltip');
+    }
+    const offMouseViewUsers = () => {
+        const offMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
+        offMouseViewUsers.style.opacity = "0"
+        offMouseViewUsers.style.transition = "0s";
+    }
 
+    const openAddUser = () => {
+        const displayAddUser = document.querySelector('.container');
+        if(open) {
+            displayAddUser.style.visibility = "visible"
+            displayAddUser.style.opacity = "1"
+            displayAddUser.style.transition = "opacity .5s ease-in-out";
+        }
+    }
+
+    const openAccHolder = () => {
+        const displayAccHolder = document.querySelector('.AccHolders');
+        if(open) {
+            displayAccHolder.style.visibility = "visible"
+            displayAccHolder.style.opacity = "1"
+            displayAccHolder.style.transition = "opacity .5s ease-in-out";
+        }
+    }
 
     return (
         <div className='mainContainer'>
             <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
-                <div className='addAccountUserTooltip'>
-                    Add an account user here.
-                </div>
-                <button className='adminButton' onMouseEnter={onMouseTooltip} onMouseLeave={offMouseTooltip}>
-                <a href={SignupPage}><i class="fa-solid fa-user-gear" ></i></a>
+                <button className='adminButton'
+                    onClick={openAddUser}>
+                        <i className="fa-solid fa-user-gear" id="addUser"></i>
                 </button>
             </div>
             <div className='userInfo'>
@@ -38,20 +68,40 @@ function Dashboard(props){
                     </span>                        
 
                 </div>
-                <div className='accountUser'>
-                    <h6>Account User:</h6>
-                    <span>Unknown</span>
 
+                <div className='accountUser'>
+                    <h6>Account Holder:</h6>
+                    <span>
+                    {accountUserCredentials.length !== 0 && 
+                        `${accountUserCredentials[accountUserCredentials.length - 1].first_name}
+                        ${accountUserCredentials[accountUserCredentials.length - 1].last_name}` //pedeng gumamit ng ternary expression o logical && operator
+                    } 
+                    </span>
                 </div>
             </div>
             <div className='userDetail3'>
                 <div className='displayBalance'>
-                    <div className='personalBalance'>
-                        <h2>₱6,000</h2>
+                <div className='personalBalance'>
+                    <i class="fa-solid fa-ellipsis"
+                        onMouseEnter={onMouseViewUsers}
+                        onMouseLeave={offMouseViewUsers}
+                        onClick={openAccHolder}
+                        id="viewAccountHolder">
+                    </i>
+                    <div className='viewAccHolderToolTip'>
+                        View Account Holders
                     </div>
+                    <h2>
+                    {accountUserCredentials.length !== 0 && (() => {
+                        const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
+                        return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
+                    })()}
+                    </h2>
+                </div>
+
                     <div className='overallBalance'>
                         <h6> Total Balance</h6>
-                        <h6>₱10,000</h6>
+                        <h6>{`₱${(totalBalance)}`}</h6>
                     </div>
                 </div>
                 <div className='cardDesign'>
@@ -66,7 +116,7 @@ function Dashboard(props){
             <div className='btDiv'>
                 <button className='buttons'>Send Money</button>
                 <button className='buttons'>Deposit</button>
-                <button className='buttons'>Pay Bills</button>
+                <button className='buttons'>Budget App</button>
             </div>
       </div>
     )

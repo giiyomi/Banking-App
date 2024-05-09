@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-// import loginCredentialsArray from '../../../assets/data/loginCredentials.json'
-
 function SignupForm(props) {
     const {credentialsContainer, newId, loginCredentials} = props
     const [firstNameValue, firstName] = useState('');

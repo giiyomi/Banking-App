@@ -12,6 +12,7 @@ function LoginCredentials(props){
         const userNameInput = e.target.elements.userName.value;
         const passwordInput = e.target.elements.password.value;
         const matchedCredential = loginCredentials.find(credential => credential.user_name === userNameInput && credential.password === passwordInput);
+        
 
         if (matchedCredential) {
             alert("You have successfully logged in");

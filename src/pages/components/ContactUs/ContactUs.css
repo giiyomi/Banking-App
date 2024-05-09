@@ -1,5 +1,5 @@
 .contactUs{
-    z-index: 999;
+    z-index: 100;
     max-width: 100%;
     font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: rgb(254, 82, 82);
@@ -9,6 +9,7 @@
     align-items: center;
     align-content: center;
     text-align: center;
+
 }   
 .contactUs p{
   margin: .6%;
