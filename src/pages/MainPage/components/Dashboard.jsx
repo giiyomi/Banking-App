@@ -53,6 +53,16 @@ function Dashboard(props){
         }
     }
 
+    const openChooseAcc = () => {
+        const displayAccounts = document.querySelector('.chooseAccPage');
+        if(open) {
+            displayAccounts.style.visibility = "visible"
+            displayAccounts.style.opacity = "1"
+            displayAccounts.style.transition = "opacity .5s ease-in-out";
+        }
+    }
+
+
     return (
         <div className='mainContainer'>
             <h1 className='containerTitle'>Dashboard</h1>
@@ -97,8 +107,8 @@ function Dashboard(props){
                         View Account Holders
                     </div>
                     <h2>
-                        {selectedAccount ? 
-                            ` ₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString()}` : 
+                    {selectedAccount ? //isa pa to sa mga ipupush to
+                            ` ₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 9)}...` : 
                             (accountUserCredentials.length !== 0 && (() => {
                                 const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
                                 return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
@@ -123,9 +133,9 @@ function Dashboard(props){
                 </div>
             </div>
             <div className='btDiv'>
+                <button className='buttons' onClick={openChooseAcc}>Widthdraw</button>
+                <button className='buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='buttons'>Send Money</button>
-                <button className='buttons'>Deposit</button>
-                <button className='buttons'>Transfer</button>
             </div>
       </div>
     )

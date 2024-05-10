@@ -5,6 +5,8 @@ import AvionbankLogo from '../components/AvionbankLogo/AvionbankLogo'
 import ContactUs from '../components/ContactUs/ContactUs'
 import EnrollUser from './components/enrollUser'
 import AccHolders from './components/AccHolders'
+import ChooseAccount from './components/chooseAccount'
+import DepositPage from './components/DepositPage'
 import { useState } from 'react'
 
 
@@ -31,6 +33,13 @@ const MainPage = (props) => {
       <AccHolders
       accountUserCredentials={accountUserCredentials}
       setSelectedAccount={setSelectedAccount}></AccHolders>
+      <ChooseAccount
+      accountUserCredentials={accountUserCredentials}
+      setSelectedAccount = {setSelectedAccount}
+      ></ChooseAccount>
+      <DepositPage
+
+      selectedAccount={selectedAccount}></DepositPage>
       <ContactUs></ContactUs>
     </div>
   )

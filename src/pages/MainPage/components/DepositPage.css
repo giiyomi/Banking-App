@@ -1,5 +1,4 @@
-
-.AccHolders{
+.depositPage{
     margin: 0;
     height: 100vh;
     width: 100vw;
@@ -14,7 +13,7 @@
     cursor: default;
 }
 
-.accHoldersWindow{
+.depositWindow{
     height: 500px;
     width: 600px;
     background-color: rgb(255, 255,255);
@@ -28,9 +27,11 @@
     box-shadow: 0px 0px 10px 2px rgba(0,0,0, .5);
 }
 
-.shadowContainer1{
+.edgeShadow{
     height: 485px;
     width: 590px;
+
+    /* background-image: linear-gradient(rgba(0,0,0,.3), white); */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -42,7 +43,8 @@
     box-shadow: 0px 0px 15px rgba(0,0,0,.5);
 }
 
-.clientInfoTitle{
+.depositTitle{
+
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom: 2px solid black;
@@ -61,26 +63,27 @@
 
 }
 
-.accHolderList{
+.depositFieldDisplay{
     height: 65%;
     width: 100%;
     background-color: rgba(0,0,0,.2);
     display: flex;
+    justify-content: space-between;
     align-items: center;
     align-content: center;
     flex-direction: column;
+    gap:1%;
     font-size: 20px;
-    gap:2%;
 }
 
-.headerTitles{
+.questionTitle{
+
     width: 100%;
     margin:0px;
     padding: 2% 0px;
     border-bottom: 2px solid rgba(0,0,0,.2);
     box-shadow: 0px 10px 20px 0px rgba(0,0,0,.2);
-    display: grid;
-    grid-template-columns: repeat(3, 33.33%);
+    display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -88,41 +91,44 @@
     font-size: 25px;
     text-wrap: nowrap;
 }
-
-.accountsContainer{
-    height: 60%;
+.nameAccHolder{
     width: 100%;
-    padding-top: 1%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex;
-    align-content: center;
-    overflow-y: auto;
+    font-style: italic;
+    font-weight: 370;
 }
 
-.namesAndBalances{
+.depositField{
+    background-color: transparent;
+    padding-top: 3%;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 33.33%);
-    flex-direction: row;
+    height: 97%;
+    display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
-    text-wrap: nowrap;
+    flex-direction: column;
+    position: relative;
+    z-index: 999;
 }
 
-.namesAndBalances:hover{
-    background-color: rgba(0,0,0,.2);
-    cursor: pointer;
-}
-
-.namesAndBalances div{
-    border-bottom: 2px solid rgba(0,0,0,.2);
-    padding: 5%;
+.depositField::before {
+    content: '';
+    position: absolute;
+    top:0;
     width: 100%;
     height: 100%;
-    line-break:anywhere;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTN5awi7M3wXKffD8xnWZZpCVYst3OZNaijdbcbrBOkQ&s");
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.06;
+    z-index: -1;
+}
+
+.labelsAndInputs{
+    border-bottom: 2px solid rgba(0,0,0,.2);
+    width: 100%;
+    height: 60%;
     box-sizing: border-box;
     font-size: medium;
     display: flex;
@@ -133,13 +139,60 @@
 }
 
 
-.closeAccHolderWindow{
+.depositLabels{
+    width: 40%;
+    margin:0px;
+    padding: 0px;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.depositInputs{
+    width: 60%;
+    padding-left: 5%;
+    background-color: rgba(0,0,0,0);
+    height: 100%;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    flex-direction: column;
+    gap: 15%;
+
+}
+
+input{
+    border-radius: 30px;
+    border: none;
+    height: 20%;
+    width: 85%;
+    text-align: center;
+    font-size: 25px;
+}
+.personalAvailBal{
+    width: 100%;
+    font-size: 25px;
+    font-style: italic;
+}
+.personalBal{
+    width: 100%;
+    font-style: italic;
+}
+
+
+.depositButton{
     background-image: url("https://miro.medium.com/v2/resize:fit:1358/1*vhoE-Yw2HgrlScZmR_L1zA.gif");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     height: 15%;
     width: 100%;
     padding:10px;
@@ -169,57 +222,55 @@ button:hover{
 
 
 @media (max-width:700px){
-    .accHoldersWindow{
+    .depositWindow{
         height: 400px;
         width: 450px;
     }
-    .shadowContainer1{
+    .edgeShadow{
         height: 385px;
         width: 440px;
     }
     
-    .clientInfoTitle{
+    .depositTitle{
         font-size: 23px;
     }
     
-    .headerTitles{
+    .depositFieldDisplay{
+        padding-top: 8%;
+    }
+    
+    .questionTitle{
         font-size: 23px;
     }
-    .accountsContainer{
-        padding-top: 1%;
-    }
+    
     input{
         font-size: 17px;
     }
     }
 
 @media (max-width:500px){
-    .accHoldersWindow{
+    .depositWindow{
         height: 300px;
         width: 350px;
     }
-    .shadowContainer1{
+    .edgeShadow{
         height: 285px;
         width: 340px;
     }
     
-    .clientInfoTitle{
+    .depositTitle{
         font-size: 20px;
     }
     
-    .headerTitles{
+    .depositFieldDisplay{
+        padding-top: 5%;
+    }
+    
+    .questionTitle{
         font-size: 18px;
     }
 
-    .namesAndBalances{
-        line-break:anywhere;
-        text-wrap: wrap;
-        font-size: 10px;
-    }
-    .namesAndBalances div{
-        font-size: 15px;
-    }
-    .addUserButton{
+    .depositButton{
         margin-top: 3%;
     }
 
@@ -230,31 +281,24 @@ button:hover{
 }
 
 @media (max-width:400px){
-    .accHoldersWindow{
+    .depositWindow{
         height: 200px;
         width: 250px;
     }
-    .shadowContainer1{
+    .edgeShadow{
         height: 185px;
         width: 240px;
     }
     
-    .clientInfoTitle{
+    .depositTitle{
         font-size: 17px;
     }
     
-    .accHolderList{
+    .depositFieldDisplay{
         padding-top: 3%;
     }
     
-    .headerTitles{
-        font-size: 15px;
-    }    
-    
-    .namesAndBalances{
-        font-size: 15px;
-    }
-    .sumTotalBalance{
+    .questionTitle{
         font-size: 15px;
     }
 
@@ -264,29 +308,31 @@ button:hover{
         padding: .5% 5%;
         font-size: 13px;
     }
-
-    
 }
 
 
 @media (max-height:700px){
-    .accHoldersWindow{
+    .depositWindow{
         height: 400px;
         width: 450px;
     }
-    .shadowContainer1{
+    .edgeShadow{
         height: 385px;
         width: 440px;
     }
     
-    .clientInfoTitle{
+    .depositTitle{
         font-size: 23px;
     }
     
-    .headerTitles{
+    .depositFieldDisplay{
+        padding-top: 8%;
+    }
+    
+    .questionTitle{
+        width: 38%;
         font-size: 20px;
     }
-
     
     input{
         font-size: 17px;
@@ -294,28 +340,28 @@ button:hover{
 }
 
 @media (max-height:500px){
-    .accHoldersWindow{
+    .depositWindow{
         height: 300px;
         width: 350px;
     }
-    .shadowContainer1{
+    .edgeShadow{
         height: 285px;
         width: 340px;
     }
     
-    .clientInfoTitle{
+    .depositTitle{
         font-size: 20px;
     }
     
-    .headerTitles{
-        font-size: 1rem;
+    .depositFieldDisplay{
+        padding-top: 5%;
     }
-    .accountsContainer{
-        text-wrap: wrap;
+    
+    .questionTitle{
+        width: 38%;
+        font-size: 18px;
     }
-    .namesAndBalances{
-        padding-top: 1%;
-    }
+
 
     button{
         padding: 1% 8%;

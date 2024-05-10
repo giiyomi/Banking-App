@@ -1,12 +1,13 @@
-import './AccHolders.css'
+import './chooseAccount.css'
+import '../../../assets/images/401kBalanceCompare_EmployerMatch.gif'
 
 
-const AccHolders = (props) => {
+const ChooseAccount = (props) => {
     const {accountUserCredentials, setSelectedAccount} = props;
 
 
     const handleSelectSet = (index) => {
-        const findAccHolder = accountUserCredentials[index];
+        const findAccHolder = accountUserCredentials[index];//ni re-assign ko lang kay findAccHolder
         setSelectedAccount(findAccHolder);
     };
     
@@ -24,42 +25,51 @@ const AccHolders = (props) => {
     
 
     const closeUserButton = (event) => {
-        const displayAccHolder = document.querySelector('.AccHolders')
+        const chooseAccPage = document.querySelector('.chooseAccPage')
         event.preventDefault();
-        displayAccHolder.style.visibility = "hidden";
-        displayAccHolder.style.opacity = "0";
-        displayAccHolder.style.transition = "visibility .5s"
+        chooseAccPage.style.visibility = "hidden";
+        chooseAccPage.style.opacity = "0";
     }
 
     const closeWindowUserLists = (event) => {
-        const displayAccHolder = document.querySelector('.AccHolders')
-        if (!event.target.closest('.accHoldersWindow')){
-            displayAccHolder.style.visibility = "hidden";
-            displayAccHolder.style.opacity = "0";
+        const chooseAccPage = document.querySelector('.chooseAccPage')
+        if (!event.target.closest('.chooseAccWindow')){
+            chooseAccPage.style.visibility = "hidden";
+            chooseAccPage.style.opacity = "0";
         }
     }
 
     const closeWindowAccHolder = () => {
-        const displayAccHolder = document.querySelector('.AccHolders')
-        displayAccHolder.style.visibility = "hidden";
-        displayAccHolder.style.opacity = "0";
+        const chooseAccPage = document.querySelector('.chooseAccPage')
+        chooseAccPage.style.visibility = "hidden";
+        chooseAccPage.style.opacity = "0";
+        openDespositPage()
+
+    }
+
+    const openDespositPage = () => {
+        const displayDespositPage = document.querySelector('.depositPage')
+            displayDespositPage.style.visibility = "visible" 
+            displayDespositPage.style.opacity = "1"
+            displayDespositPage.style.transition = "opacity .5s ease-in-out"
+
     }
 
     
     
 
     return (
-        <div class="AccHolders" onClick={closeWindowUserLists}>
-            <div class="accHoldersWindow">
-                <form class="shadowContainer1">
-                    <div class="clientInfoTitle">
-                        Account Holder(s)
+        <div class="chooseAccPage" onClick={closeWindowUserLists}>
+            <div class="chooseAccWindow">
+                <form class="edgeShadow">
+                    <div class="chooseAccTitle">
+                        Choose Account
                     </div>
                     <div class="accHolderList">
                         <div class="headerTitles">
-                            <div class="accHolderName">Full Name</div> 
-                            <div class="accHolderEmail">Balance</div> 
-                            <div class="accHolderBal">Email</div> 
+                            <div>Full Name</div> 
+                            <div>Balance</div> 
+                            <div>Email</div> 
                         </div>
                         <div className='accountsContainer'>
                             {accountUserCredentials.map((account, index) => (
@@ -83,4 +93,4 @@ const AccHolders = (props) => {
     )
 }
 
-export default AccHolders;
+export default ChooseAccount;
