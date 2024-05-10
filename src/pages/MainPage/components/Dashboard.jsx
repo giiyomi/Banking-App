@@ -1,13 +1,16 @@
+
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
 
+
 function Dashboard(props){
-    const {loginCredentials, usernameHolder, accountUserCredentials} = props
+    const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
- 
     let open = true;
+
+
     const totalBalance = accountUserCredentials.reduce((total, account) => {
         const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
     
@@ -19,34 +22,28 @@ function Dashboard(props){
     }, 0);
     
     const formattedTotalBalance = totalBalance.toLocaleString();
-    
-
-    
-    
-    
-        
-    
+     
     const onMouseViewUsers = () => {
         const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
         onMouseViewUsers.style.opacity = "1";
         onMouseViewUsers.style.transition = "1s";
-        onMouseViewUsers.classList.add('show-tooltip');
+
     }
     const offMouseViewUsers = () => {
         const offMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
         offMouseViewUsers.style.opacity = "0"
         offMouseViewUsers.style.transition = "0s";
-    }
 
+    }
     const openAddUser = () => {
         const displayAddUser = document.querySelector('.container');
         if(open) {
             displayAddUser.style.visibility = "visible"
             displayAddUser.style.opacity = "1"
             displayAddUser.style.transition = "opacity .5s ease-in-out";
+  
         }
     }
-
     const openAccHolder = () => {
         const displayAccHolder = document.querySelector('.AccHolders');
         if(open) {
@@ -77,12 +74,15 @@ function Dashboard(props){
                 <div className='accountUser'>
                     <h6>Account Holder:</h6>
                     <span>
-                    {accountUserCredentials.length !== 0 && 
+                    <div className="automaticDisplay">
+                        {selectedAccount ? `${selectedAccount.first_name} ${selectedAccount.last_name}` : 
+                        (accountUserCredentials.length !== 0 && 
                         `${accountUserCredentials[accountUserCredentials.length - 1].first_name}
-                        ${accountUserCredentials[accountUserCredentials.length - 1].last_name}` //pedeng gumamit ng ternary expression o logical && operator
-                    } 
+                        ${accountUserCredentials[accountUserCredentials.length - 1].last_name}`)}
+                    </div>
                     </span>
                 </div>
+
             </div>
             <div className='userDetail3'>
                 <div className='displayBalance'>
@@ -97,10 +97,13 @@ function Dashboard(props){
                         View Account Holders
                     </div>
                     <h2>
-                    {accountUserCredentials.length !== 0 && (() => {
-                        const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
-                        return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
-                    })()}
+                        {selectedAccount ? 
+                            ` ₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString()}` : 
+                            (accountUserCredentials.length !== 0 && (() => {
+                                const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
+                                return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
+                            })())
+                        }
                     </h2>
                 </div>
 
@@ -122,7 +125,7 @@ function Dashboard(props){
             <div className='btDiv'>
                 <button className='buttons'>Send Money</button>
                 <button className='buttons'>Deposit</button>
-                <button className='buttons'>Budget App</button>
+                <button className='buttons'>Transfer</button>
             </div>
       </div>
     )

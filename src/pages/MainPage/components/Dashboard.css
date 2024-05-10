@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.manualDisplay{
+  display: block;
+}
+
 
 .userInfo{
   width:97%;
@@ -116,6 +120,8 @@
   font-weight: 600;
   font-size: 20px;
 }
+
+
 
 .userDetail3{
   margin: auto;

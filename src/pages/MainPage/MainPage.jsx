@@ -5,10 +5,14 @@ import AvionbankLogo from '../components/AvionbankLogo/AvionbankLogo'
 import ContactUs from '../components/ContactUs/ContactUs'
 import EnrollUser from './components/enrollUser'
 import AccHolders from './components/AccHolders'
+import { useState } from 'react'
 
 
 const MainPage = (props) => {
   const {loginCredentials,usernameHolder,setAccUserArrays,setAccUserId,accountUserCredentials} = props
+  const [selectedAccount, setSelectedAccount] = useState(null);
+
+
   
   return (
     <div className='mainPage'>
@@ -16,14 +20,17 @@ const MainPage = (props) => {
       <Dashboard
         loginCredentials={loginCredentials}
         usernameHolder={usernameHolder}
-        accountUserCredentials={accountUserCredentials}>
+        accountUserCredentials={accountUserCredentials}
+        selectedAccount={selectedAccount}>
       </Dashboard>
       <EnrollUser
         setAccUserArrays={setAccUserArrays}
         setAccUserId={setAccUserId}
         accountUserCredentials={accountUserCredentials}
       ></EnrollUser>
-      <AccHolders accountUserCredentials={accountUserCredentials}></AccHolders>
+      <AccHolders
+      accountUserCredentials={accountUserCredentials}
+      setSelectedAccount={setSelectedAccount}></AccHolders>
       <ContactUs></ContactUs>
     </div>
   )
