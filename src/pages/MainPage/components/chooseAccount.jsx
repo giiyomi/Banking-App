@@ -3,12 +3,19 @@ import '../../../assets/images/401kBalanceCompare_EmployerMatch.gif'
 
 
 const ChooseAccount = (props) => {
-    const {accountUserCredentials, setSelectedAccount} = props;
+    const {accountUserCredentials, setSelectedAccount, depositOrWidthdraw} = props;
+
 
 
     const handleSelectSet = (index) => {
-        const findAccHolder = accountUserCredentials[index];//ni re-assign ko lang kay findAccHolder
+        const findAccHolder = accountUserCredentials[index]; //ni re-assign ko lang kay findAccHolder
         setSelectedAccount(findAccHolder);
+
+        if (depositOrWidthdraw === 'Withdraw') {
+            openWithdrawPage();
+        } else if (depositOrWidthdraw === 'Deposit') {
+            openDepositPage(); // Dapat palitan mo ang pangalan ng function na tatawagin dito
+        }
     };
     
     const totalBalance = accountUserCredentials.reduce((total, account) => {
@@ -26,16 +33,20 @@ const ChooseAccount = (props) => {
 
     const closeUserButton = (event) => {
         const chooseAccPage = document.querySelector('.chooseAccPage')
+        const flexDepositPage = document.querySelector('.depositPage')
         event.preventDefault();
         chooseAccPage.style.visibility = "hidden";
         chooseAccPage.style.opacity = "0";
+        flexDepositPage.style.display = "flex"
     }
 
     const closeWindowUserLists = (event) => {
         const chooseAccPage = document.querySelector('.chooseAccPage')
+        const flexDepositPage = document.querySelector('.depositPage')
         if (!event.target.closest('.chooseAccWindow')){
             chooseAccPage.style.visibility = "hidden";
             chooseAccPage.style.opacity = "0";
+            flexDepositPage.style.display = "flex"
         }
     }
 
@@ -43,17 +54,22 @@ const ChooseAccount = (props) => {
         const chooseAccPage = document.querySelector('.chooseAccPage')
         chooseAccPage.style.visibility = "hidden";
         chooseAccPage.style.opacity = "0";
-        openDespositPage()
-
     }
 
-    const openDespositPage = () => {
+    const openDepositPage = () => {
         const displayDespositPage = document.querySelector('.depositPage')
             displayDespositPage.style.visibility = "visible" 
             displayDespositPage.style.opacity = "1"
             displayDespositPage.style.transition = "opacity .5s ease-in-out"
-
     }
+
+    const openWithdrawPage = () => {
+        const displayWithdrawPage = document.querySelector('.withdrawPage')
+        displayWithdrawPage.style.visibility = "visible" 
+        displayWithdrawPage.style.opacity = "1"
+        displayWithdrawPage.style.transition = "opacity .5s ease-in-out"
+    }
+
 
     
     

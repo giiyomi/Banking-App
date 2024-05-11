@@ -3,7 +3,7 @@ import "./DepositPage.css"
 const DepositPage  = (props) => {
     const {selectedAccount} = props;
 
-
+    //VISIBILITY LANG TO
     const closeWinDepWidow = (event) => {
         const displayDepositPage = document.querySelector('.depositPage');
         if (!event.target.closest('.depositWindow')) {
@@ -11,7 +11,6 @@ const DepositPage  = (props) => {
             displayDepositPage.style.opacity = "0";
         }
     };
-
     const DepButHit = (event) => {
         const displayDepositPage = document.querySelector('.depositPage')
         event.preventDefault();
@@ -43,8 +42,9 @@ const DepositPage  = (props) => {
                             </div>
                             <span className="personalAvailBal">
                                 {selectedAccount ?
-                                    ` ₱${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 13)}${selectedAccount.initial_balance.length > 13 ? '...' : ''}` :
-                                    null
+                                    ` ₱ ${selectedAccount.initial_balance.length > 10 ?
+                                    `${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 12)}...`:
+                                    Number(selectedAccount.initial_balance.slice(1)).toLocaleString()}` : null
                                 }
                             </span>
                             <div class="personalBal">Personal Balance</div>

@@ -204,6 +204,7 @@
   justify-content: flex-end;
   gap: 5%;
   text-wrap: nowrap;
+  font-style: italic;
 }
 
 .overallBalance h6{

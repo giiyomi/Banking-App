@@ -5,7 +5,7 @@ import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
 
 
 function Dashboard(props){
-    const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount} = props
+    const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount, buttonHolder} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
     let open = true;
@@ -41,7 +41,6 @@ function Dashboard(props){
             displayAddUser.style.visibility = "visible"
             displayAddUser.style.opacity = "1"
             displayAddUser.style.transition = "opacity .5s ease-in-out";
-  
         }
     }
     const openAccHolder = () => {
@@ -53,18 +52,34 @@ function Dashboard(props){
         }
     }
 
-    const openChooseAcc = () => {
+    const openChooseAcc = (e) => {
         const displayAccounts = document.querySelector('.chooseAccPage');
-        if(open) {
+        let clickedButton = null;
             displayAccounts.style.visibility = "visible"
             displayAccounts.style.opacity = "1"
             displayAccounts.style.transition = "opacity .5s ease-in-out";
+
+            if (e.target.closest(".Deposit")) {
+                clickedButton = "Deposit"
+                buttonHolder(clickedButton)
+              } else if(e.target.closest(".Withdraw")){
+                clickedButton = "Withdraw"
+                buttonHolder(clickedButton)
+              }
+    }
+
+    const openTransferWindow = () => {
+        if(open) {
+        const displayTransferPage = document.querySelector('.transferPage');
+        displayTransferPage.style.visibility = "visible"
+        displayTransferPage.style.opacity = "1"
+        displayTransferPage.style.transition = "opacity .5s ease-in-out";
         }
     }
 
 
     return (
-        <div className='mainContainer'>
+        <div className='mainContainer' >
             <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
                 <button className='adminButton'
@@ -86,7 +101,7 @@ function Dashboard(props){
                     <span>
                     <div className="automaticDisplay">
                         {selectedAccount ? `${selectedAccount.first_name} ${selectedAccount.last_name}` : 
-                        (accountUserCredentials.length !== 0 && 
+                        (accountUserCredentials.length !== 0 &&
                         `${accountUserCredentials[accountUserCredentials.length - 1].first_name}
                         ${accountUserCredentials[accountUserCredentials.length - 1].last_name}`)}
                     </div>
@@ -108,10 +123,10 @@ function Dashboard(props){
                     </div>
                     <h2>
                     {selectedAccount ? //isa pa to sa mga ipupush to
-                            ` ₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 9)}...` : 
+                            `₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().length > 9 ? `${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 9)}...` : Number(selectedAccount.initial_balance.slice(1)).toLocaleString()}` : 
                             (accountUserCredentials.length !== 0 && (() => {
                                 const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
-                                return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
+                                return `₱ ${balance.length > 10 ? `${balance.slice(0, 10)}...` : balance}`;
                             })())
                         }
                     </h2>
@@ -119,7 +134,7 @@ function Dashboard(props){
 
                     <div className='overallBalance'>
                         <h6> Total Balance</h6>
-                        <h6>{`₱${formattedTotalBalance.length > 10 ? formattedTotalBalance.slice(0, 9) + '...' : formattedTotalBalance}`}</h6>
+                        <h6>{`₱${formattedTotalBalance.length > 12 ? formattedTotalBalance.slice(0, 12) + '...' : formattedTotalBalance}`}</h6>
 
                     </div>
                 </div>
@@ -133,9 +148,9 @@ function Dashboard(props){
                 </div>
             </div>
             <div className='btDiv'>
-                <button className='buttons' onClick={openChooseAcc}>Widthdraw</button>
-                <button className='buttons' onClick={openChooseAcc}>Deposit</button>
-                <button className='buttons'>Send Money</button>
+                <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
+                <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
+                <button className='buttons' onClick={openTransferWindow}>Transfer</button>
             </div>
       </div>
     )

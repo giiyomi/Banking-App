@@ -14,6 +14,8 @@ function App() {
   const [accountUserCredentials, accUserArray] = useState(accountUsersArray);
   const [userName, findUserName] = useState('');
 
+
+  //ITO ANG SYNTAX NA GINAWA NI MIKEE NA NAGPUPUSH SA MGA NAGEGENERATE NA OBJECT AFTER MAG CREATE NG ACCOUNT MANAGERS
   const credentialsContainer = (newCredentials) => {
     setNewCredentials((prevCredentials) => {
       const updatedCredentialSet = [...prevCredentials, newCredentials];
@@ -21,7 +23,7 @@ function App() {
       return updatedCredentialSet;
     });
   }
-
+  //ITO NAMAN ANG NAGPUPUSH SA MGA NAGEGENERATE NA OBJECT AFTER MAG CREATE NG ACCOUNT HOLDERS
   const setAccUserArrays = (newUsers) => {
     accUserArray((prevUsers) => {
       const combinedUserCredentials = [...prevUsers, newUsers];
@@ -30,6 +32,7 @@ function App() {
     });
   }
 
+  //GINAWA KO LANG TO PARA MAKUHA KO KUNG ANONG PANGALAN NG ACCOUNT MANAGER NA NAKALOG IN AT MAIPASA SA MAINPAGE
   const usernameHolder = () => {
     return userName;
   }
@@ -38,7 +41,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-        <Route index element={<LoginPage/>}/>
+        <Route index element={<LoginPage/>}/> 
 
           <Route path='/loginpage'
             element={

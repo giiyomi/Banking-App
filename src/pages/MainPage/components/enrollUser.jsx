@@ -13,6 +13,7 @@ const EnrollUser = (props) => {
     const addUserCredentials = (e) => {
         e.preventDefault();
 
+        //ACCOUNT CREATION CONDITIONS
         const userExists = accountUserCredentials.find(credential => 
             credential.first_name === firstNameValue && 
             credential.last_name === lastNameValue
@@ -20,8 +21,6 @@ const EnrollUser = (props) => {
         const emailExists = accountUserCredentials.find(credential => 
             credential.email === emailValue
         );
-
-
         if (userExists) {
             alert("User already exists.");
             return;
@@ -31,11 +30,12 @@ const EnrollUser = (props) => {
         } else if(initialBalValue.startsWith("₱-") || initialBalValue.startsWith("₱0") || initialBalValue === "₱") {
             alert("Please enter a valid amount.")
             return;
-        } else if (!/^\₱?\d+(\.\d+)?$/.test(initialBalValue)) {
+        } else if (!/^₱?\d+(\.\d+)?$/.test(initialBalValue)) {
             alert("Please enter a valid amount.");
             return;
         }
 
+        // CREATION OF MANAGER'S ACCOUNT - This object will be pushed to the empty array everytime creating an account.
         const newAccUserObject = {
           first_name: firstNameValue,
           last_name: lastNameValue,
@@ -47,11 +47,14 @@ const EnrollUser = (props) => {
         console.log(newAccUserObject);
         setAccUserArrays(newAccUserObject);
 
-        firstName('');
-        lastName('');
-        email('');
-        initialBal('');
+        firstName(''); //Calling all the UseState
+        lastName(''); //Calling all the UseState
+        email(''); //Calling all the UseState
+        initialBal(''); //Calling all the UseState
     }
+
+
+    //VISIBILITY
 
     const closeWindowUserEnrollment = (event) => {
         const displayAddUser = document.querySelector('.container')
@@ -88,7 +91,7 @@ const EnrollUser = (props) => {
                         </div>
                     </div>
                     <div className="addUserButton">
-                        <button>Add user</button>
+                        <button type="submit">Add user</button>
                     </div>
                 </form>
             </div>
