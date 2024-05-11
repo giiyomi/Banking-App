@@ -1,7 +1,10 @@
 
+// import React, {useState} from 'react'
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
+// import AddExpense from './AddExpense';
+// import expenseData from '../../../assets/data/expense-list.json'
 
 
 function Dashboard(props){
@@ -77,6 +80,27 @@ function Dashboard(props){
         }
     }
 
+//     const [expenses, setExpenses] = useState(expenseData); 
+//     const [count, setCount] = useState(expenses.length);
+//     const handleExpenses = (newExpense) => {
+    
+//         let newCount = count + 1;
+//         setCount(newCount);
+//         setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+//   }
+
+//     const handleDeleteExpense = (expenseId) => {
+
+//         setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+//   }
+
+//   const [isBudgetVisible, setIsBudgetVisible] = useState(false);
+
+//     const toggleBudgetVisibility = () => {
+//         setIsBudgetVisible(!isBudgetVisible);
+//     };
+
+ 
 
     return (
         <div className='mainContainer' >
@@ -147,10 +171,37 @@ function Dashboard(props){
                     </div>
                 </div>
             </div>
+            
+
+            {/* <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
+            <div className='expenseTab'>
+                <div className='expenseDiv1'><h6>Expense</h6></div>
+                <div className='expenseDiv2'><h6>Price</h6></div>
+            </div>
+            <div className='budgetApp'>
+                {
+                    expenses.map((expense) => {
+                        return (
+                            <div className='expenseItems' key={expense.id}>
+                                <span>{expense.expense_name} </span>
+                                <span>₱{expense.expense_cost}</span>
+                                <button className='deleteExpenseButtons' onClick={() => handleDeleteExpense(expense.id)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        );
+                    })
+                }
+      </div> */}
+      {/* <div>
+      <AddExpense handleAddExpenses={handleExpenses} newId={count}></AddExpense>
+      </div>
+      </div> */}
             <div className='btDiv'>
                 <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='buttons' onClick={openTransferWindow}>Transfer</button>
+                {/* <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> */}
             </div>
       </div>
     )

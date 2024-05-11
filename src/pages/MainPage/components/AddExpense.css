@@ -1,0 +1,39 @@
+.expenseButtons{
+  margin: 0px;
+  margin-left: 15px;
+  font-size: 15px;
+  padding: 2px 2px;
+  width: 10%;
+  height: 90%;
+  background: rgb(254, 82, 82);
+  box-shadow: 2px 2px 10px rgba(0,0,0,.8);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color:white;
+  text-wrap: nowrap;
+  font-weight: 600;
+
+}
+
+.expenseInput{
+  outline: none;
+  width: 30%;
+  font-size: 15px;
+  padding: 10px 10px;
+margin-left: 10px;
+}
+
+
+.expenseButtons:hover{
+  background: rgba(255, 108, 108, 0.999);
+  color:rgb(255, 255, 255);
+  transition: .5s;
+  -webkit-transition: .5s;
+}
+
+.addExpense{
+  padding: 10px 10px;
+  margin-bottom: 20px;
+}
