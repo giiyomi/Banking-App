@@ -1,7 +1,10 @@
 
+import React, {useState} from 'react'
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
+import AddExpense from './AddExpense';
+import expenseData from '../../../assets/data/expense-list.json'
 
 
 function Dashboard(props){
@@ -60,6 +63,26 @@ function Dashboard(props){
             displayAccounts.style.opacity = "1"
             displayAccounts.style.transition = "opacity .5s ease-in-out";
         }
+    }
+
+    const [expenses, setExpenses] = useState(expenseData); 
+    const [count, setCount] = useState(expenses.length);
+    const handleExpenses = (newExpense) => {
+    
+        let newCount = count + 1;
+        setCount(newCount);
+        setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+  }
+
+    const handleDeleteExpense = (expenseId) => {
+
+        setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+  }
+
+  const [showExpenseTab, setShowExpenseTab] = useState(false);
+
+    const toggleExpenseTabButton = () => {
+        setShowExpenseTab(!showExpenseTab);
     }
 
 
@@ -132,10 +155,35 @@ function Dashboard(props){
                     </div>
                 </div>
             </div>
+            
+            <div className={showExpenseTab ? 'expenseTab' : 'expenseTab hidden'}>
+                <div className='expenseDiv1'><h6>Expense</h6></div>
+                <div className='expenseDiv2'><h6>Price</h6></div>
+            </div>
+            <div className='budgetApp'>
+                {
+                showExpenseTab && (
+                    expenses.map((expense) => {
+                        return (
+                            <div className='expenseItems' key={expense.id}>
+                                <span>{expense.expense_name} </span>
+                                <span>₱{expense.expense_cost}</span>
+                                <button className='deleteExpenseButtons' onClick={() => handleDeleteExpense(expense.id)}>
+                                    <i className="fa-solid fa-x"></i>
+                                </button>
+                            </div>
+                        );
+                    })
+                )}
+      </div>
+      <div>
+      <AddExpense handleAddExpenses={handleExpenses} newId={count}></AddExpense>
+      </div>
             <div className='btDiv'>
                 <button className='buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='buttons'>Send Money</button>
+                <button onClick={toggleExpenseTabButton} className='buttons'>Budget</button>
             </div>
       </div>
     )

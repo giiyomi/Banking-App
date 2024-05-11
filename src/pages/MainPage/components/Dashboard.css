@@ -125,6 +125,7 @@
 
 .userDetail3{
   margin: auto;
+  margin-bottom: 30px;
   padding: 20px;
   width: 60%;
   height: 180px;
@@ -288,6 +289,50 @@
   -webkit-transition: .5s;
 }
 
+
+.expenseTab{
+  width:97%;
+  padding:10px 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+
+.deleteExpenseButtons{
+  margin: 0px;
+  margin-left: 10px;
+  font-size: 8px;
+  padding: 2px 8px;
+  width: 50%;
+  height: auto;
+  background: rgb(254, 82, 82);
+  box-shadow: 2px 2px 10px rgba(53, 53, 53, 0.8);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color:white;
+  text-wrap: nowrap;
+  font-weight: 600;
+}
+
+.expenseItems{
+  width:97%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.expenseItems span{
+  margin-left:15px;
+}
 
 
   
