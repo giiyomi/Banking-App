@@ -79,12 +79,13 @@ function Dashboard(props){
         setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
   }
 
-  const [showExpenseTab, setShowExpenseTab] = useState(false);
+  const [isBudgetVisible, setIsBudgetVisible] = useState(false);
 
-    const toggleExpenseTabButton = () => {
-        setShowExpenseTab(!showExpenseTab);
-    }
+    const toggleBudgetVisibility = () => {
+        setIsBudgetVisible(!isBudgetVisible);
+    };
 
+ 
 
     return (
         <div className='mainContainer'>
@@ -156,13 +157,14 @@ function Dashboard(props){
                 </div>
             </div>
             
-            <div className={showExpenseTab ? 'expenseTab' : 'expenseTab hidden'}>
+
+            <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
+            <div className='expenseTab'>
                 <div className='expenseDiv1'><h6>Expense</h6></div>
                 <div className='expenseDiv2'><h6>Price</h6></div>
             </div>
             <div className='budgetApp'>
                 {
-                showExpenseTab && (
                     expenses.map((expense) => {
                         return (
                             <div className='expenseItems' key={expense.id}>
@@ -174,16 +176,17 @@ function Dashboard(props){
                             </div>
                         );
                     })
-                )}
+                }
       </div>
       <div>
       <AddExpense handleAddExpenses={handleExpenses} newId={count}></AddExpense>
+      </div>
       </div>
             <div className='btDiv'>
                 <button className='buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='buttons'>Send Money</button>
-                <button onClick={toggleExpenseTabButton} className='buttons'>Budget</button>
+                <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button>
             </div>
       </div>
     )
