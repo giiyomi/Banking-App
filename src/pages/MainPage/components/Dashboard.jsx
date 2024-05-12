@@ -200,7 +200,7 @@ function Dashboard(props){
             <div className='btDiv'>
                 <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
-                <button className='buttons' onClick={openTransferWindow}>Transfer</button>
+                <button className='Transfer buttons' onClick={openTransferWindow}>Transfer</button>
                 {/* <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> */}
             </div>
       </div>
