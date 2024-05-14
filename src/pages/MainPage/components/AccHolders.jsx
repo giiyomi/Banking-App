@@ -12,14 +12,9 @@ const AccHolders = (props) => {
     
     //C
     const totalBalance = accountUserCredentials.reduce((total, account) => {
-        const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
-        if (balance.toString().length > 12) { 
-            return total + balance;
-        } else {
-            return total + balance;
-        }
+        const balance = account.initial_balance;
+        return total + balance;;
     }, 0);
-    const formattedTotalBalance = totalBalance.toLocaleString();
 
 
     //MGA VISIBILITY
@@ -62,12 +57,12 @@ const AccHolders = (props) => {
                                     closeWindowAccHolder(event);
                                     handleSelectSet(index)}}>
                                     <div>{account.first_name} {account.last_name}</div>
-                                    <div>{`₱${Number(account.initial_balance.slice(1)).toLocaleString()}`}</div>
+                                    <div>{`₱${Number(account.initial_balance).toLocaleString()}`}</div>
                                     <div>{account.email}</div>
                                 </div>
                             ))}
                         </div>
-                        <div className='sumTotalBalance'><strong>Total:</strong> ₱{formattedTotalBalance.length > 15 ? formattedTotalBalance.slice(0, 15) + '...' : formattedTotalBalance}</div>
+                        <div className='sumTotalBalance'><strong>Total:</strong> ₱{totalBalance.toString().length > 12 ? `${totalBalance.toLocaleString().slice(0, 12)}, ...` : totalBalance.toLocaleString()}</div>
                     </div>
                     <div class="closeAccHolderWindow">
                         <button onClick={closeUserButton}>Close</button>

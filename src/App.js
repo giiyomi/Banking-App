@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [loginCredentials, setNewCredentials] = useState(loginCredentialsArray);
-  const [accountUserCredentials, accUserArray] = useState(accountUsersArray);
+  const [accountUserCredentials/* BUONG ARRAY NG ACCOUNT HOLDERS */, accUserArray] = useState(accountUsersArray);
   const [userName, findUserName] = useState('');
 
 

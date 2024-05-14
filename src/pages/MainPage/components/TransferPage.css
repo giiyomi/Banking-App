@@ -201,10 +201,7 @@ input{
     font-size: 25px;
     font-style: italic;
 }
-.personalBalTrans{
-    width: 100%;
-    font-style: italic;
-}
+
 
 
 .transferButton{
@@ -295,11 +292,7 @@ button:hover{
         font-style: italic;
         display: inline-block;
     }
-    .personalBalTrans{
-        width: 100%;
-        font-size: 15px;
 
-    }
 
     .transferButton{
         padding: 5px;

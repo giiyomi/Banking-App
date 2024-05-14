@@ -40,7 +40,7 @@ const EnrollUser = (props) => {
           first_name: firstNameValue,
           last_name: lastNameValue,
           email: emailValue,
-          initial_balance: initialBalValue,
+          initial_balance: Number(initialBalValue.slice(1)),
           id: setAccUserId
         }
 

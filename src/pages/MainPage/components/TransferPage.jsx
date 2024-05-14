@@ -5,6 +5,7 @@ import { useState } from 'react';
 const TransferPage = (props) => {
     const {accountUserCredentials, setSelectedAccount} = props;
     const [specificAccHolder, selectedAccHolder] = useState(null);
+    const [transferAmount, transferValue] = useState('');
     
 
     const handleSelectSet = (index) => {
@@ -30,7 +31,7 @@ const TransferPage = (props) => {
         const senderName = senderSelect.options[senderSelect.selectedIndex].innerText;
         const receiverName = receiverSelect.options[receiverSelect.selectedIndex].innerText;
         const amountToTransfer = Number(document.querySelector('.amountToTransfer').value);
-        const initialBalance = Number(specificAccHolder.initial_balance.slice(1))
+        const initialBalance = Number(specificAccHolder.initial_balance)
 
         if (senderName === receiverName) {
             alert("Sender and Receiver must not be the same.");
@@ -44,13 +45,9 @@ const TransferPage = (props) => {
         } else {
             const adjustedBalance = Number(initialBalance) - Number(amountToTransfer)
             console.log(adjustedBalance)
-            return adjustedBalance
-            
+            return adjustedBalance            
         }
     };
-
-
-
 
 
     return (
@@ -78,7 +75,7 @@ const TransferPage = (props) => {
                                 <label> Amount to deposit:</label>
                             </div >
                             <div class="transferInput">
-                            <select type="text" placeholder="Sender" class="sender" onChange={(e) => handleSelectSet(e.target.selectedIndex)}>
+                            <select type="text" placeholder="Sender" className="sender" onChange={(e) => handleSelectSet(e.target.selectedIndex)}>
                                 <option></option>
                                 {accountUserCredentials.map((account) => (
                                     <option key={account.id} class="namesAndBalances">
@@ -86,7 +83,7 @@ const TransferPage = (props) => {
                                     </option>
                                 ))}
                             </select>
-                                <select type="text" placeholder="Receiver" class="receiver">
+                                <select type="text" placeholder="Receiver" className="receiver">
                                 <option></option>
                                 {accountUserCredentials.map((account) => (
                                     <option key={account.id} class="namesAndBalances">
@@ -94,18 +91,18 @@ const TransferPage = (props) => {
                                     </option>
                                 ))}
                             </select>
-                                <input type="number" placeholder="₱" className='amountToTransfer'></input>
+                                <input type="number" placeholder="₱" className='amountToTransfer' value={transferAmount} onChange={(e) => transferValue(e.target.value)}></input>
                             </div>
                         </div>
                         {specificAccHolder && 
                         <span class="personalAvailBalTrans">
-                            {(specificAccHolder.initial_balance.slice(1)).length < 11 ?
+                            {/* {(specificAccHolder.initial_balance.slice(1)).length < 11 ?
                                 `₱${Number(specificAccHolder.initial_balance.slice(1)).toLocaleString()}`:
                                 `₱${(Number(specificAccHolder.initial_balance.slice(1)).toLocaleString()).slice(0,11)}...`
-                             }
+                             } */}
                         </span>
                         }
-                        <div class="personalBalTrans">Personal Balance</div>
+                        
                     </div>
                 </div>
                 <div class="transferButton">
