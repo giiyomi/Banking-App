@@ -21,6 +21,7 @@ function AddExpense(props){
         handleAddExpenses(newExpenseObject);
 
         setExpen('');
+        setExpenseCost('');
     }
 
     return (
