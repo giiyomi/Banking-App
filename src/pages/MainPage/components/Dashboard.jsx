@@ -1,94 +1,112 @@
-
-import React, {useState} from 'react'
+// import React, {useState} from 'react'
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
-import AddExpense from './AddExpense';
-import expenseData from '../../../assets/data/expense-list.json'
+// import AddExpense from './AddExpense';
+// import expenseData from '../../../assets/data/expense-list.json'
 
 
 function Dashboard(props){
-    const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount} = props
+    const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount, buttonHolder} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
-    let open = true;
+
 
 
     const totalBalance = accountUserCredentials.reduce((total, account) => {
-        const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
-    
-        if (balance.toString().length > 8) { 
-            return total + balance;
-        } else {
-            return total + balance;
-        }
+        const balance = account.initial_balance;
+        return total + balance;;
     }, 0);
     
-    const formattedTotalBalance = totalBalance.toLocaleString();
      
     const onMouseViewUsers = () => {
         const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
-        onMouseViewUsers.style.opacity = "1";
-        onMouseViewUsers.style.transition = "1s";
+            onMouseViewUsers.style.opacity = "1";
+            onMouseViewUsers.style.transition = "1s";
 
     }
     const offMouseViewUsers = () => {
         const offMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
-        offMouseViewUsers.style.opacity = "0"
-        offMouseViewUsers.style.transition = "0s";
+            offMouseViewUsers.style.opacity = "0"
+            offMouseViewUsers.style.transition = "0s";
 
     }
     const openAddUser = () => {
         const displayAddUser = document.querySelector('.container');
-        if(open) {
             displayAddUser.style.visibility = "visible"
             displayAddUser.style.opacity = "1"
             displayAddUser.style.transition = "opacity .5s ease-in-out";
-  
-        }
+        
     }
     const openAccHolder = () => {
         const displayAccHolder = document.querySelector('.AccHolders');
-        if(open) {
             displayAccHolder.style.visibility = "visible"
             displayAccHolder.style.opacity = "1"
             displayAccHolder.style.transition = "opacity .5s ease-in-out";
-        }
+        
     }
 
-    const openChooseAcc = () => {
+    const openChooseAcc = (e) => {
         const displayAccounts = document.querySelector('.chooseAccPage');
-        if(open) {
+        let clickedButton = null;
             displayAccounts.style.visibility = "visible"
             displayAccounts.style.opacity = "1"
             displayAccounts.style.transition = "opacity .5s ease-in-out";
-        }
+
+            if (e.target.closest(".Deposit")) {
+                clickedButton = "Deposit"
+                buttonHolder(clickedButton)
+              } else if(e.target.closest(".Withdraw")){
+                clickedButton = "Withdraw"
+                buttonHolder(clickedButton)
+              }
     }
 
-    const [expenses, setExpenses] = useState(expenseData); 
-    const [count, setCount] = useState(expenses.length);
-    const handleExpenses = (newExpense) => {
+    const openWithdrawWindow = () => {
+        const displayWithdrawPage = document.querySelector('.withdrawPage');
+        displayWithdrawPage.style.visibility = "visible"
+        displayWithdrawPage.style.opacity = "1"
+        displayWithdrawPage.style.transition = "opacity .5s ease-in-out";
+    }
+
+    const openTransferWindow = () => {
+        const displayTransferPage = document.querySelector('.transferPage');
+        displayTransferPage.style.visibility = "visible"
+        displayTransferPage.style.opacity = "1"
+        displayTransferPage.style.transition = "opacity .5s ease-in-out";
+    }
+ 
+    const openDepositWindow = () => {
+        const displayDepositPage = document.querySelector('.depositPage');
+        displayDepositPage.style.visibility = "visible"
+        displayDepositPage.style.opacity = "1"
+        displayDepositPage.style.transition = "opacity .5s ease-in-out";
+    }
+
+//     const [expenses, setExpenses] = useState(expenseData); 
+//     const [count, setCount] = useState(expenses.length);
+//     const handleExpenses = (newExpense) => {
     
-        let newCount = count + 1;
-        setCount(newCount);
-        setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
-  }
+//         let newCount = count + 1;
+//         setCount(newCount);
+//         setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+//   }
 
-    const handleDeleteExpense = (expenseId) => {
+//     const handleDeleteExpense = (expenseId) => {
 
-        setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
-  }
+//         setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+//   }
 
-  const [isBudgetVisible, setIsBudgetVisible] = useState(false);
+//   const [isBudgetVisible, setIsBudgetVisible] = useState(false);
 
-    const toggleBudgetVisibility = () => {
-        setIsBudgetVisible(!isBudgetVisible);
-    };
+//     const toggleBudgetVisibility = () => {
+//         setIsBudgetVisible(!isBudgetVisible);
+//     };
 
  
 
     return (
-        <div className='mainContainer'>
+        <div className='mainContainer' >
             <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
                 <button className='adminButton'
@@ -109,8 +127,8 @@ function Dashboard(props){
                     <h6>Account Holder:</h6>
                     <span>
                     <div className="automaticDisplay">
-                        {selectedAccount ? `${selectedAccount.first_name} ${selectedAccount.last_name}` : 
-                        (accountUserCredentials.length !== 0 && 
+                        {selectedAccount ? `${selectedAccount.first_name} ${selectedAccount.last_name}` :
+                        (accountUserCredentials.length !== 0 &&
                         `${accountUserCredentials[accountUserCredentials.length - 1].first_name}
                         ${accountUserCredentials[accountUserCredentials.length - 1].last_name}`)}
                     </div>
@@ -131,19 +149,22 @@ function Dashboard(props){
                         View Account Holders
                     </div>
                     <h2>
-                    {selectedAccount ? //isa pa to sa mga ipupush to
-                            ` ₱ ${Number(selectedAccount.initial_balance.slice(1)).toLocaleString().slice(0, 9)}...` : 
-                            (accountUserCredentials.length !== 0 && (() => {
-                                const balance = Number(accountUserCredentials[accountUserCredentials.length - 1].initial_balance.slice(1)).toLocaleString();
-                                return `₱ ${balance.length > 10 ? `${balance.slice(0, 9)}...` : balance}`;
-                            })())
+                        {selectedAccount ?
+                            `₱ ${selectedAccount.initial_balance === null ? 0:
+                            selectedAccount.initial_balance.toString().length > 8 ?
+                            selectedAccount.initial_balance.toLocaleString().slice(0, 9) + "..." :
+                            selectedAccount.initial_balance.toLocaleString()}` : accountUserCredentials.length !== 0?
+                            (accountUserCredentials.length !== 0 &&(() => {
+                                    const balance = accountUserCredentials[accountUserCredentials.length - 1].initial_balance;
+                                    return `₱ ${balance.toString().length > 7? balance.toLocaleString().slice(0, 8) + '...' : balance.toLocaleString()}`;
+                            })()): <h2 style={{fontSize: '14px', fontStyle: 'italic'}}>Enroll account holder</h2>
                         }
                     </h2>
                 </div>
 
                     <div className='overallBalance'>
                         <h6> Total Balance</h6>
-                        <h6>{`₱${formattedTotalBalance.length > 10 ? formattedTotalBalance.slice(0, 9) + '...' : formattedTotalBalance}`}</h6>
+                        <h6>{`₱${totalBalance.toString().length > 10 ? totalBalance.toLocaleString().slice(0, 10) + '...' : totalBalance.toLocaleString()}`}</h6>
 
                     </div>
                 </div>
@@ -158,7 +179,7 @@ function Dashboard(props){
             </div>
             
 
-            <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
+            {/* <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
             <div className='expenseTab'>
                 <div className='expenseDiv1'><h6>Expense</h6></div>
                 <div className='expenseDiv2'><h6>Price</h6></div>
@@ -177,16 +198,16 @@ function Dashboard(props){
                         );
                     })
                 }
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
       <AddExpense handleAddExpenses={handleExpenses} newId={count}></AddExpense>
       </div>
-      </div>
+      </div> */}
             <div className='btDiv'>
-                <button className='buttons' onClick={openChooseAcc}>Widthdraw</button>
-                <button className='buttons' onClick={openChooseAcc}>Deposit</button>
-                <button className='buttons'>Send Money</button>
-                <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button>
+                <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
+                <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
+                <button className='Transfer buttons' onClick={openTransferWindow}>Transfer</button>
+                {/* <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> */}
             </div>
       </div>
     )

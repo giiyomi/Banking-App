@@ -4,25 +4,20 @@ import './AccHolders.css'
 const AccHolders = (props) => {
     const {accountUserCredentials, setSelectedAccount} = props;
 
-
+    // ITONG FUNCTION NA ITO AY PARA MALAMAN KUNG SINONG ACCOUNT HOLDER ANG NAPINDOT SA LOOB NG ACCOUNT HOLDERS WINDOW (MAKIKITA MO TO ONCE KINLIK MO YUNG ELLIPSIS)
     const handleSelectSet = (index) => {
-        const findAccHolder = accountUserCredentials[index];
-        setSelectedAccount(findAccHolder);
+        const findAccHolder = accountUserCredentials[index]; //DITO AY IPINASA ANG INDEX NG ARRAY NA KINLICK AT IPINANGALAN KAY findAccHolder
+        setSelectedAccount(findAccHolder); 
     };
     
+    //C
     const totalBalance = accountUserCredentials.reduce((total, account) => {
-        const balance = parseFloat(account.initial_balance.replace(/\D/g, ''));
-    
-        if (balance.toString().length > 12) { 
-            return total + balance;
-        } else {
-            return total + balance;
-        }
+        const balance = account.initial_balance;
+        return total + balance;;
     }, 0);
 
-    const formattedTotalBalance = totalBalance.toLocaleString();
-    
 
+    //MGA VISIBILITY
     const closeUserButton = (event) => {
         const displayAccHolder = document.querySelector('.AccHolders')
         event.preventDefault();
@@ -30,7 +25,6 @@ const AccHolders = (props) => {
         displayAccHolder.style.opacity = "0";
         displayAccHolder.style.transition = "visibility .5s"
     }
-
     const closeWindowUserLists = (event) => {
         const displayAccHolder = document.querySelector('.AccHolders')
         if (!event.target.closest('.accHoldersWindow')){
@@ -38,15 +32,11 @@ const AccHolders = (props) => {
             displayAccHolder.style.opacity = "0";
         }
     }
-
     const closeWindowAccHolder = () => {
         const displayAccHolder = document.querySelector('.AccHolders')
         displayAccHolder.style.visibility = "hidden";
         displayAccHolder.style.opacity = "0";
     }
-
-    
-    
 
     return (
         <div class="AccHolders" onClick={closeWindowUserLists}>
@@ -67,12 +57,12 @@ const AccHolders = (props) => {
                                     closeWindowAccHolder(event);
                                     handleSelectSet(index)}}>
                                     <div>{account.first_name} {account.last_name}</div>
-                                    <div>{`₱${Number(account.initial_balance.slice(1)).toLocaleString()}`}</div>
+                                    <div>{`₱${Number(account.initial_balance).toLocaleString()}`}</div>
                                     <div>{account.email}</div>
                                 </div>
                             ))}
                         </div>
-                        <div className='sumTotalBalance'><strong>Total:</strong> ₱{formattedTotalBalance.length > 15 ? formattedTotalBalance.slice(0, 15) + '...' : formattedTotalBalance}</div>
+                        <div className='sumTotalBalance'><strong>Total:</strong> ₱{totalBalance.toString().length > 12 ? `${totalBalance.toLocaleString().slice(0, 12)}, ...` : totalBalance.toLocaleString()}</div>
                     </div>
                     <div class="closeAccHolderWindow">
                         <button onClick={closeUserButton}>Close</button>
