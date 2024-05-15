@@ -1,9 +1,9 @@
-// import React, {useState} from 'react'
+import React, {useState} from 'react'
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
-// import AddExpense from './AddExpense';
-// import expenseData from '../../../assets/data/expense-list.json'
+import AddExpense from './AddExpense';
+import expenseData from '../../../assets/data/expense-list.json'
 
 
 function Dashboard(props){
@@ -83,25 +83,25 @@ function Dashboard(props){
         displayDepositPage.style.transition = "opacity .5s ease-in-out";
     }
 
-//     const [expenses, setExpenses] = useState(expenseData); 
-//     const [count, setCount] = useState(expenses.length);
-//     const handleExpenses = (newExpense) => {
+    const [expenses, setExpenses] = useState(expenseData); 
+    const [count, setCount] = useState(expenses.length);
+    const handleExpenses = (newExpense) => {
     
-//         let newCount = count + 1;
-//         setCount(newCount);
-//         setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
-//   }
+        let newCount = count + 1;
+        setCount(newCount);
+        setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+  }
 
-//     const handleDeleteExpense = (expenseId) => {
+    const handleDeleteExpense = (expenseId) => {
 
-//         setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
-//   }
+        setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+  }
 
-//   const [isBudgetVisible, setIsBudgetVisible] = useState(false);
+  const [isBudgetVisible, setIsBudgetVisible] = useState(false);
 
-//     const toggleBudgetVisibility = () => {
-//         setIsBudgetVisible(!isBudgetVisible);
-//     };
+    const toggleBudgetVisibility = () => {
+        setIsBudgetVisible(!isBudgetVisible);
+    };
 
  
 
@@ -179,7 +179,7 @@ function Dashboard(props){
             </div>
             
 
-            {/* <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
+             <div className='bdgtApp' style={{ display: isBudgetVisible ? 'initial' : 'none' }}>
             <div className='expenseTab'>
                 <div className='expenseDiv1'><h6>Expense</h6></div>
                 <div className='expenseDiv2'><h6>Price</h6></div>
@@ -198,16 +198,16 @@ function Dashboard(props){
                         );
                     })
                 }
-      </div> */}
-      {/* <div>
+      </div> 
+      <div>
       <AddExpense handleAddExpenses={handleExpenses} newId={count}></AddExpense>
       </div>
-      </div> */}
+      </div> 
             <div className='btDiv'>
                 <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='Transfer buttons' onClick={openTransferWindow}>Transfer</button>
-                {/* <button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> */}
+                {<button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> }
             </div>
       </div>
     )
