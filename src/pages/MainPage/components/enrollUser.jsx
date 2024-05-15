@@ -33,6 +33,9 @@ const EnrollUser = (props) => {
         } else if (!/^₱?\d+(\.\d+)?$/.test(initialBalValue)) {
             alert("Please enter a valid amount.");
             return;
+        } else if (!/^[a-zA-Z]+$/.test(firstNameValue) || !/^[a-zA-Z]+$/.test(lastNameValue)) {
+            alert ('First and last name should only contain letters.') 
+            return;
         }
 
         // CREATION OF MANAGER'S ACCOUNT - This object will be pushed to the empty array everytime creating an account.
@@ -81,9 +84,9 @@ const EnrollUser = (props) => {
                             <label> <div>Initial Deposit:</div> </label>
                         </div >
                         <div className="inputs">
-                            <input placeholder="Juan" value={firstNameValue} onChange={(e) => firstName(e.target.value)} required></input>
-                            <input placeholder="Dela Cruz" value={lastNameValue} onChange={(e) => lastName(e.target.value)} required></input>
-                            <input placeholder="email@gmail.com" value={emailValue} onChange={(e) => email(e.target.value)} required></input>
+                            <input type="text" placeholder="Juan" value={firstNameValue} onChange={(e) => firstName(e.target.value)} required></input>
+                            <input type="text" placeholder="Dela Cruz" value={lastNameValue} onChange={(e) => lastName(e.target.value)} required></input>
+                            <input type="email" placeholder="email@gmail.com" value={emailValue} onChange={(e) => email(e.target.value)} required></input>
                             <input placeholder="₱" type="text" value={initialBalValue}
                                 onChange={(e) => {
                                     const newValue = e.target.value; newValue.startsWith("₱")? initialBal(newValue): initialBal("₱" + newValue)
