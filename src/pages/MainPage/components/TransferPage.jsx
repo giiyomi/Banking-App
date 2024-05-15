@@ -2,14 +2,24 @@ import './TransferPage.css';
 import { useState } from 'react';
 
 const TransferPage = (props) => {
-    const { accountUserCredentials, setSelectedAccount } = props;
+    const { accountUserCredentials, setSelectedAccount, setSelectedSender, setSelectedReceiver, transferCalculator } = props;
     const [specificAccHolder, setSpecificAccHolder] = useState(null);
     const [transferAmount, setTransferAmount] = useState('');
     
-    const handleSelectSet = (index) => {
-        const findAccHolder = accountUserCredentials[index - 1];
-        setSelectedAccount(findAccHolder);
-        setSpecificAccHolder(findAccHolder);
+    const handleSelectSender = (index) => {
+        const findSender = [index - 1]
+
+        console.log(findSender)
+        setSelectedSender(findSender);
+
+        console.log(`tignan natin si sender ${findSender}`)
+    };
+
+    const handleSelectReceiver = (index) => {
+        const findReceiver = [index - 1];
+        setSelectedReceiver(findReceiver)
+
+        console.log(`tignan natin si receiver ${findReceiver}`)
     };
 
     const closeTransWindow = (event) => {
@@ -29,7 +39,7 @@ const TransferPage = (props) => {
         const senderName = senderSelect.options[senderIndex].innerText;
         const receiverName = receiverSelect.options[receiverIndex].innerText;
         const amountToTransfer = Number(transferAmount);
-        const initialBalance = Number(specificAccHolder.initial_balance);
+
 
         if (senderName === receiverName) {
             alert("Sender and Receiver must not be the same.");
@@ -37,23 +47,19 @@ const TransferPage = (props) => {
         } else if (amountToTransfer <= 0 || isNaN(amountToTransfer)) {
             alert("Please enter a valid amount to transfer.");
             return;
-        } else if (initialBalance < amountToTransfer) {
-            alert("Insufficient Funds.");
-            return;
+
         } else {
-            const adjustedBalance = initialBalance - amountToTransfer;
-            const updatedAccounts = [...accountUserCredentials];
-            updatedAccounts[senderIndex].initial_balance = adjustedBalance;
-            setSelectedAccount(updatedAccounts[senderIndex]);
-            setSpecificAccHolder(updatedAccounts[senderIndex]);
-            alert(`Transfer successful! New balance: ₱${adjustedBalance.toLocaleString()}`);
+
+
+            transferCalculator(Number(transferAmount))
+
         }
     };
 
     return (
         <div className="transferPage" onClick={closeTransWindow}>
             <div className="transferWindow">
-                <form className="containerShadow3" onSubmit={transferButHit}>
+                <form className="containerShadow3" >
                     <div className="transferTitle">
                         Transfer Money
                     </div>
@@ -69,7 +75,7 @@ const TransferPage = (props) => {
                                     <label> Amount to deposit:</label>
                                 </div>
                                 <div className="transferInput">
-                                    <select className="sender" onChange={(e) => handleSelectSet(e.target.selectedIndex)}>
+                                    <select className="sender" onChange={(e) => handleSelectSender(e.target.selectedIndex)}>
                                         <option></option>
                                         {accountUserCredentials.map((account, index) => (
                                             <option key={account.id} value={index}>
@@ -77,7 +83,7 @@ const TransferPage = (props) => {
                                             </option>
                                         ))}
                                     </select>
-                                    <select className="receiver">
+                                    <select className="receiver" onChange={(e) => handleSelectReceiver(e.target.selectedIndex)}>
                                         <option></option>
                                         {accountUserCredentials.map((account, index) => (
                                             <option key={account.id} value={index}>
@@ -95,7 +101,7 @@ const TransferPage = (props) => {
                         </div>
                     </div>
                     <div className="transferButton">
-                        <button type="submit">Transfer</button>
+                        <button onClick={transferButHit} type="submit">Transfer</button>
                     </div>
                 </form>
             </div>

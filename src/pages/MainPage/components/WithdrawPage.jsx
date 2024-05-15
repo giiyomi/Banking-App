@@ -14,35 +14,22 @@ const WithdrawPage = (props) => {
         }
     };
 
-    // Function to handle the withdrawal button click
     const WithdButHit = (event) => {
         event.preventDefault();
+        const displayWithdrawPage = document.querySelector('.withdrawPage');
+        displayWithdrawPage.style.visibility = "hidden";
+        displayWithdrawPage.style.opacity = "0";
 
-        // Convert the withdraw amount to a number
-        const withdrawAmountNumber = Number(withdrawAmount);
-        if (isNaN(withdrawAmountNumber) || withdrawAmountNumber <= 0) {
-            alert('Please enter a valid amount to withdraw.');
-            return;
-        }
-
+        const withdrawAmountNumber = Number(withdrawAmount); // Convert the withdraw amount to a number
         const accHolderNameWithdraw = selectedAccount.initial_balance;
         const newBalAfterWithdraw = accHolderNameWithdraw - withdrawAmountNumber;
 
-        // Check for sufficient balance
         if (newBalAfterWithdraw < 0) {
             alert('Insufficient Balance');
             return;
         }
 
-        // Update the balance using withdrawCalculator function
         withdrawCalculator(newBalAfterWithdraw);
-
-        // Hide the withdrawal page
-        const displayWithdrawPage = document.querySelector('.withdrawPage');
-        displayWithdrawPage.style.visibility = "hidden";
-        displayWithdrawPage.style.opacity = "0";
-
-        // Reset the withdraw amount input
         setWithdrawAmount('');
     };
 

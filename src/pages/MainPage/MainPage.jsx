@@ -19,6 +19,8 @@ const MainPage = (props) => {
   const [depositOrWidthdraw, buttonHolder] = useState("");
   const [updatedBalAfterDeposit, getNewBalAfterDep] = useState(null);
   const [updatedBalAfterWithdraw, getNewBalAfterWith] = useState(null);
+  let [selectedSender, setSelectedSender] = useState(null) 
+  let [selectedReceviver, setSelectedReceiver] = useState(null)
 
   const depositCalculator = (newBalance) => {
     getNewBalAfterDep(newBalance)
@@ -39,6 +41,18 @@ const MainPage = (props) => {
     selectedAccount.initial_balance = newBalance
     console.log(`pano naman to?${selectedAccount.initial_balance}`)
   };
+
+  const transferCalculator = (newBalance) => {
+    console.log(`ito yung input amount: ${newBalance}`)
+    console.log(`ano kaya to sender? ${selectedSender}`)
+    console.log(`ano kaya to receiver? ${selectedReceviver}`)
+    console.log(`initial amount ng sender ${accountUserCredentials[selectedSender].initial_balance}`)
+    console.log(`initial amount ng receiver ${accountUserCredentials[selectedReceviver].initial_balance}`)
+    console.log(`ito yung sender's updated balance ${accountUserCredentials[selectedSender].initial_balance - newBalance}`)
+    console.log(`ito yung receiver's updated balance ${accountUserCredentials[selectedReceviver].initial_balance + newBalance}`)
+    accountUserCredentials[selectedSender].initial_balance = accountUserCredentials[selectedSender].initial_balance - newBalance
+    accountUserCredentials[selectedReceviver].initial_balance = accountUserCredentials[selectedReceviver].initial_balance + newBalance
+  }
 
 
 
@@ -92,6 +106,9 @@ const MainPage = (props) => {
       accountUserCredentials={accountUserCredentials}
       setSelectedAccount={setSelectedAccount}
       selectedAccount={selectedAccount}
+      setSelectedSender={setSelectedSender}
+      setSelectedReceiver={setSelectedReceiver}
+      transferCalculator={transferCalculator}
       />
 
       {/* <SendMoney/> */}
