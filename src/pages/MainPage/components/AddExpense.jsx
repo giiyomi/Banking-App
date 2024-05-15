@@ -28,7 +28,7 @@ function AddExpense(props){
         <div className="addExpense">
             <form onSubmit={addExpenseHandler}>
                 <input className="expenseInput" value={expen} placeholder="Expense name" onChange={(event) => setExpen(event.target.value)} required></input>
-                <input className="expenseInput" value={expenseCost} placeholder="Expense cost " onChange={(event) => setExpenseCost(event.target.value)} required></input>
+                <input type="number" className="expenseInput" value={expenseCost} placeholder="Expense cost " onChange={(event) => setExpenseCost(event.target.value)} required min={1}></input>
                 <button className="expenseButtons">Add</button>
             </form>
         </div>
