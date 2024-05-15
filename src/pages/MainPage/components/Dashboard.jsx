@@ -11,14 +11,12 @@ function Dashboard(props){
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
 
-
-
     const totalBalance = accountUserCredentials.reduce((total, account) => {
         const balance = account.initial_balance;
-        return total + balance;;
+        return total + balance;
     }, 0);
     
-     
+
     const onMouseViewUsers = () => {
         const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
             onMouseViewUsers.style.opacity = "1";
@@ -62,13 +60,6 @@ function Dashboard(props){
               }
     }
 
-    // const openWithdrawWindow = () => {
-    //     const displayWithdrawPage = document.querySelector('.withdrawPage');
-    //     displayWithdrawPage.style.visibility = "visible"
-    //     displayWithdrawPage.style.opacity = "1"
-    //     displayWithdrawPage.style.transition = "opacity .5s ease-in-out";
-    // }
-
     const openTransferWindow = () => {
         const displayTransferPage = document.querySelector('.transferPage');
         displayTransferPage.style.visibility = "visible"
@@ -76,12 +67,6 @@ function Dashboard(props){
         displayTransferPage.style.transition = "opacity .5s ease-in-out";
     }
  
-    // const openDepositWindow = () => {
-    //     const displayDepositPage = document.querySelector('.depositPage');
-    //     displayDepositPage.style.visibility = "visible"
-    //     displayDepositPage.style.opacity = "1"
-    //     displayDepositPage.style.transition = "opacity .5s ease-in-out";
-    // }
 
     const [expenses, setExpenses] = useState(expenseData); 
     const [count, setCount] = useState(expenses.length);

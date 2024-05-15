@@ -17,7 +17,7 @@ function AddExpense(props){
             id: newId
         }
 
-        console.log(newExpenseObject);
+        // console.log(newExpenseObject);
         handleAddExpenses(newExpenseObject);
 
         setExpen('');

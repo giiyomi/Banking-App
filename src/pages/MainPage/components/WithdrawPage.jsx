@@ -5,6 +5,12 @@ const WithdrawPage = (props) => {
     const { selectedAccount, accountUserCredentials, withdrawCalculator } = props;
     const [withdrawAmount, setWithdrawAmount] = useState('');
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'e') {
+            event.preventDefault();
+        }
+    };
+
     // Function to handle closing the withdrawal window
     const closeWithdWindow = (event) => {
         const displayWithdrawPage = document.querySelector('.withdrawPage');
@@ -24,7 +30,10 @@ const WithdrawPage = (props) => {
         const accHolderNameWithdraw = selectedAccount.initial_balance;
         const newBalAfterWithdraw = accHolderNameWithdraw - withdrawAmountNumber;
 
-        if (newBalAfterWithdraw < 0) {
+        if(withdrawAmountNumber <= 0 || isNaN(withdrawAmountNumber)) {
+            alert('Please enter a valid amount.');
+            return;
+        } else if (newBalAfterWithdraw < 0) {
             alert('Insufficient Balance');
             return;
         }
@@ -54,6 +63,7 @@ const WithdrawPage = (props) => {
                                         placeholder="₱"
                                         value={withdrawAmount}
                                         onChange={(e) => setWithdrawAmount(e.target.value)}
+                                        onKeyPress={handleKeyPress}
                                     />
                                 </div>
                             </div>
@@ -75,7 +85,7 @@ const WithdrawPage = (props) => {
                         </div>
                     </div>
                     <div className="withdrawButton">
-                        <button onClick={WithdButHit}>Withdraw</button>
+                        <button type="submit" onClick={WithdButHit}>Withdraw</button>
                     </div>
                 </form>
             </div>

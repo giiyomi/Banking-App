@@ -19,46 +19,41 @@ const MainPage = (props) => {
   const [depositOrWidthdraw, buttonHolder] = useState("");
   const [updatedBalAfterDeposit, getNewBalAfterDep] = useState(null);
   const [updatedBalAfterWithdraw, getNewBalAfterWith] = useState(null);
-  let [selectedSender, setSelectedSender] = useState(null) 
+  const [updatedBalAfterSend, getNewBalAfterSend] = useState(null);
+  const [updatedBalAfterReceive, getNewBalAfterReceive] = useState(null);
   let [selectedReceviver, setSelectedReceiver] = useState(null)
+  
 
   const depositCalculator = (newBalance) => {
     getNewBalAfterDep(newBalance)
-
-    console.log(`praktis ${updatedBalAfterDeposit}`)
-    console.log(`nung simula ${(selectedAccount.initial_balance)}`)
-    console.log(`eto ba yon ${newBalance}`)
+    console.log(updatedBalAfterDeposit)
+    // console.log(`nung simula ${(selectedAccount.initial_balance)}`)
+    // console.log(`eto ba yon ${newBalance}`)
+    // console.log(`pano naman to?${selectedAccount.initial_balance}`)
     selectedAccount.initial_balance = newBalance
-    console.log(`pano naman to?${selectedAccount.initial_balance}`)
   };
 
   const withdrawCalculator = (newBalance) => {
     getNewBalAfterWith(newBalance)
-
-    console.log(`praktis ${updatedBalAfterWithdraw}`)
-    console.log(`nung simula ${(selectedAccount.initial_balance)}`)
-    console.log(`eto ba yon ${newBalance}`)
+    console.log(updatedBalAfterWithdraw)
+    // console.log(`nung simula ${(selectedAccount.initial_balance)}`)
+    // console.log(`eto ba yon ${newBalance}`)
+    // console.log(`pano naman to?${selectedAccount.initial_balance}`)
     selectedAccount.initial_balance = newBalance
-    console.log(`pano naman to?${selectedAccount.initial_balance}`)
   };
 
   const transferCalculator = (newBalance) => {
-    console.log(`ito yung input amount: ${newBalance}`)
-    console.log(`ano kaya to sender? ${selectedSender}`)
-    console.log(`ano kaya to receiver? ${selectedReceviver}`)
-    console.log(`initial amount ng sender ${accountUserCredentials[selectedSender].initial_balance}`)
-    console.log(`initial amount ng receiver ${accountUserCredentials[selectedReceviver].initial_balance}`)
-    console.log(`ito yung sender's updated balance ${accountUserCredentials[selectedSender].initial_balance - newBalance}`)
-    console.log(`ito yung receiver's updated balance ${accountUserCredentials[selectedReceviver].initial_balance + newBalance}`)
-    accountUserCredentials[selectedSender].initial_balance = accountUserCredentials[selectedSender].initial_balance - newBalance
+    console.log(updatedBalAfterSend)
+    console.log(updatedBalAfterReceive)
+    selectedAccount.initial_balance = selectedAccount.initial_balance - newBalance
     accountUserCredentials[selectedReceviver].initial_balance = accountUserCredentials[selectedReceviver].initial_balance + newBalance
+    getNewBalAfterSend(selectedAccount.initial_balance)
+    getNewBalAfterReceive(accountUserCredentials[selectedReceviver].initial_balance)
   }
 
-
-
   // console.log(updatedBalAfterWithdraw)
-  console.log(setAccUserId) // Ito yung number ng arrays ng Account Holders na i-hahandle ng manager.
-  console.log(accountUserCredentials) // Ito mismo yung array na nagawa each time na makapag enroll ng Account Holder.
+  // console.log(setAccUserId) // Ito yung number ng arrays ng Account Holders na i-hahandle ng manager.
+  // console.log(accountUserCredentials) // Ito mismo yung array na nagawa each time na makapag enroll ng Account Holder.
 
   return (
     <div className='mainPage'>
@@ -69,8 +64,8 @@ const MainPage = (props) => {
         accountUserCredentials={accountUserCredentials} // Pinasa dito yung buong array ng Account Holders
         selectedAccount={selectedAccount}
         buttonHolder = {buttonHolder}
+        transferCalculator={transferCalculator}
       /> 
-
 
       <EnrollUser
         setAccUserArrays={setAccUserArrays}
@@ -81,6 +76,7 @@ const MainPage = (props) => {
       <AccHolders
       accountUserCredentials={accountUserCredentials} // Pinasa dito yung buong array ng Account Holders
       setSelectedAccount={setSelectedAccount}
+      transferCalculator={transferCalculator}
       />
 
       <ChooseAccount
@@ -89,7 +85,6 @@ const MainPage = (props) => {
       depositOrWidthdraw = {depositOrWidthdraw}
       />
  
-
       <DepositPage
       selectedAccount={selectedAccount}
       accountUserCredentials={accountUserCredentials}
@@ -106,7 +101,6 @@ const MainPage = (props) => {
       accountUserCredentials={accountUserCredentials}
       setSelectedAccount={setSelectedAccount}
       selectedAccount={selectedAccount}
-      setSelectedSender={setSelectedSender}
       setSelectedReceiver={setSelectedReceiver}
       transferCalculator={transferCalculator}
       />

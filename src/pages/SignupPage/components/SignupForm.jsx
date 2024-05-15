@@ -14,7 +14,6 @@ function SignupForm(props) {
     const [emailValue, email] = useState('');
     const navigate = useNavigate ();
 
-
     const addLoginCredentials = (e) => {
         e.preventDefault();
 
@@ -48,11 +47,8 @@ function SignupForm(props) {
         } else if (usernameExists) {
             alert("Username is already used.");
             return;
-        } else if (!/^[a-zA-Z]+$/.test(firstNameValue)) {
-            alert ('First name should only contain letters.') 
-            return;
-        } else if (!/^[a-zA-Z]+$/.test(firstNameValue) && !/^[a-zA-Z]+$/.test(lastNameValue)) {
-            alert ('First and last name should only contain letters.') 
+        } else if (!/^[a-zA-Z ]+$/.test(firstNameValue) || !/^[a-zA-Z ]+$/.test(lastNameValue)) {
+            alert('First and last name should only contain letters or spaces.') 
             return;
         }
 
@@ -67,7 +63,7 @@ function SignupForm(props) {
           id: newId
         }
 
-        console.log(newLoginObject);
+        // console.log(newLoginObject);
         credentialsContainer(newLoginObject);
 
         firstName('');

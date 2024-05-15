@@ -9,6 +9,12 @@ const EnrollUser = (props) => {
     const [emailValue, email] = useState('');
     const [initialBalValue, initialBal] = useState('');
 
+    const handleKeyPress = (event) => {
+        const inputValue = event.key;
+        if (isNaN(inputValue)) {
+            event.preventDefault();
+        }
+    };
 
     const addUserCredentials = (e) => {
         e.preventDefault();
@@ -33,10 +39,11 @@ const EnrollUser = (props) => {
         } else if (!/^₱?\d+(\.\d+)?$/.test(initialBalValue)) {
             alert("Please enter a valid amount.");
             return;
-        } else if (!/^[a-zA-Z]+$/.test(firstNameValue) || !/^[a-zA-Z]+$/.test(lastNameValue)) {
-            alert ('First and last name should only contain letters.') 
+        } else if (!/^[a-zA-Z ]+$/.test(firstNameValue) || !/^[a-zA-Z ]+$/.test(lastNameValue)) {
+            alert('First and last name should only contain letters or spaces.') 
             return;
         }
+        
 
         // CREATION OF MANAGER'S ACCOUNT - This object will be pushed to the empty array everytime creating an account.
         const newAccUserObject = {
@@ -47,7 +54,7 @@ const EnrollUser = (props) => {
           id: setAccUserId
         }
 
-        console.log(newAccUserObject);
+        // console.log(newAccUserObject);
         setAccUserArrays(newAccUserObject);
 
         firstName(''); //Calling all the UseState
@@ -72,7 +79,7 @@ const EnrollUser = (props) => {
         <div className="container"
             onClick={closeWindowUserEnrollment}>
             <div className="addUserWindow">
-                <form className="shadowContainer" onSubmit={addUserCredentials}>
+                <form className="shadowContainer" >
                     <div className="clientInfoTitle">
                         New client information
                     </div>
@@ -90,11 +97,12 @@ const EnrollUser = (props) => {
                             <input placeholder="₱" type="text" value={initialBalValue}
                                 onChange={(e) => {
                                     const newValue = e.target.value; newValue.startsWith("₱")? initialBal(newValue): initialBal("₱" + newValue)
-                                }} required/>
+                                }}
+                                onKeyPress={handleKeyPress} required/>
                         </div>
                     </div>
                     <div className="addUserButton">
-                        <button type="submit">Add user</button>
+                        <button type="submit" onClick={addUserCredentials}>Add user</button>
                     </div>
                 </form>
             </div>

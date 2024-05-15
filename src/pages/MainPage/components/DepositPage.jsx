@@ -5,6 +5,12 @@ const DepositPage = (props) => {
     const { selectedAccount, accountUserCredentials, depositCalculator } = props;
     const [depositAmount, setDepositAmount] = useState('');
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'e') {
+            event.preventDefault();
+        }
+    };
+
     const closeWinDepWidow = (event) => {
         const displayDepositPage = document.querySelector('.depositPage');
         if (!event.target.closest('.depositWindow')) {
@@ -21,11 +27,10 @@ const DepositPage = (props) => {
         const newDepositAmount = Number(depositAmount);
         const newBalAfterDeposit = accHolderNameDeposit + newDepositAmount;
 
-        if (newDepositAmount <= 0) {
+        if (newDepositAmount <= 0 || isNaN(newDepositAmount)) {
             alert('Please enter a valid amount');
             return;
         }
-
         depositCalculator(newBalAfterDeposit);
         displayDepositPage.style.visibility = "hidden";
         displayDepositPage.style.opacity = "0";
@@ -56,7 +61,10 @@ const DepositPage = (props) => {
                                         type="number"
                                         placeholder="₱"
                                         value={depositAmount}
-                                        onChange={(e) => setDepositAmount(e.target.value)}
+                                        onChange={(e) =>
+                                            setDepositAmount(e.target.value)
+                                        }
+                                        onKeyPress={handleKeyPress}
                                     />
                                 </div>
                             </div>
