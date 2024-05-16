@@ -34,7 +34,7 @@ const WithdrawPage = (props) => {
             alert('Please enter a valid amount.');
             return;
         } else if (newBalAfterWithdraw < 0) {
-            alert('Insufficient Balance');
+            alert("Insufficient Balance. Please try again.");
             return;
         }
 

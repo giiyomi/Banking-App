@@ -43,12 +43,15 @@ const EnrollUser = (props) => {
             alert('First and last name should only contain letters or spaces.') 
             return;
         }
-        
+
+        const capitalize = (str) => {
+            return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+        };
 
         // CREATION OF MANAGER'S ACCOUNT - This object will be pushed to the empty array everytime creating an account.
         const newAccUserObject = {
-          first_name: firstNameValue,
-          last_name: lastNameValue,
+          first_name: capitalize(firstNameValue),
+          last_name: capitalize(lastNameValue),
           email: emailValue,
           initial_balance: Number(initialBalValue.slice(1)),
           id: setAccUserId

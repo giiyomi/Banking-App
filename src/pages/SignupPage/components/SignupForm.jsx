@@ -18,6 +18,9 @@ function SignupForm(props) {
     const addLoginCredentials = (e) => {
         e.preventDefault();
 
+
+    
+
         const userExists = loginCredentials.find(credential => 
             credential.first_name === firstNameValue && 
             credential.last_name === lastNameValue
@@ -53,9 +56,13 @@ function SignupForm(props) {
             return;
         }
 
+        const capitalize = (str) => {
+            return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+        };
+
         const newLoginObject = {
-          first_name: firstNameValue,
-          last_name: lastNameValue,
+          first_name: capitalize(firstNameValue),
+          last_name: capitalize(lastNameValue),
           user_name: usernameValue,
           password: passwordValue,
           confirm_password: confirmedPwValue,

@@ -54,6 +54,9 @@ const TransferPage = (props) => {
         }else if (amountToTransfer <= 0 || isNaN(amountToTransfer)) {
             alert("Please enter a valid amount to transfer.");
             return;
+        }else if (selectedAccount.initial_balance < amountToTransfer) {
+            alert("Insufficient Balance. Please try again.");
+            return;
         } else {
             senderSelect.value = ''
             receiverSelect.value = ''
