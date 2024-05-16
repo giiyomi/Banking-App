@@ -19,10 +19,6 @@ function Dashboard(props){
         return total + balance;
     }, 0);
     
-
-
-
-
     const onMouseViewUsers = () => {
         const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
             onMouseViewUsers.style.opacity = "1";
@@ -101,7 +97,7 @@ function Dashboard(props){
             <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
                 <NavLink to='/loginPage'className='logoutButton' onClick={() => alert("Thank you for logging in!")}>
-                    <i className="fa-solid fa-arrow-right-from-bracket" id="logout"></i>
+                <i className="fa-solid fa-arrow-right-from-bracket" id="logout"></i>
                 </NavLink>
                 <button className='adminButton'
                     onClick={openAddUser}>

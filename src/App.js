@@ -14,6 +14,23 @@ function App() {
   // const [accountUserCredentials/* BUONG ARRAY NG ACCOUNT HOLDERS */, accUserArray] = useState(loginCredentialsArray);
   const [userName, findUserName] = useState('');
 
+  const usernameHolder = () => {
+    return userName;
+  }
+  const setAccUserArrays = (newUsers) => {
+    setNewCredentials((prevCredentials) => {
+      const updatedCredentials = prevCredentials.map(credential => {
+        if (credential.user_name === usernameHolder()) {
+          return { ...credential, acc_users: [...credential.acc_users, newUsers] };
+        }
+        return credential;
+      });
+      return updatedCredentials;
+    });
+  }
+
+  const findUserArray = loginCredentials.find(credential => credential.user_name === usernameHolder());
+  const accountUserCredentials = findUserArray ? findUserArray.acc_users : [];
 
   //ITO ANG SYNTAX NA GINAWA NI MIKEE NA NAGPUPUSH SA MGA NAGEGENERATE NA OBJECT AFTER MAG CREATE NG ACCOUNT MANAGERS
   const credentialsContainer = (newCredentials) => {
@@ -33,9 +50,7 @@ function App() {
   // }
 
   //GINAWA KO LANG TO PARA MAKUHA KO KUNG ANONG PANGALAN NG ACCOUNT MANAGER NA NAKALOG IN AT MAIPASA SA MAINPAGE
-  const usernameHolder = () => {
-    return userName;
-  }
+
 
   return (
     <div className="App">
@@ -65,9 +80,9 @@ function App() {
               <MainPage
                 loginCredentials={loginCredentials}
                 usernameHolder={usernameHolder}
-                // setAccUserArrays={setAccUserArrays}
-                // setAccUserId={accountUserCredentials.length}
-                // accountUserCredentials={accountUserCredentials}
+                setAccUserArrays={setAccUserArrays}
+                setAccUserId={accountUserCredentials.length}
+                accountUserCredentials={accountUserCredentials}
                 >
               </MainPage>}>
           </Route>
