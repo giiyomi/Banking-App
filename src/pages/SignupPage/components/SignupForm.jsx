@@ -12,6 +12,7 @@ function SignupForm(props) {
     const [confirmedPwValue, confirmedpassWord] = useState('');
     const [cpnumberValue, phoneNumber] = useState('');
     const [emailValue, email] = useState('');
+    // const [accountUserCredentials, accUserArray] = useState('')
     const navigate = useNavigate ();
 
     const addLoginCredentials = (e) => {
@@ -60,7 +61,8 @@ function SignupForm(props) {
           confirm_password: confirmedPwValue,
           phone_number: cpnumberValue,
           email: emailValue,
-          id: newId
+          id: newId,
+          acc_users: []
         }
 
         // console.log(newLoginObject);

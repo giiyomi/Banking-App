@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import goldChip from '../../../assets/images/goldchip.png'
 import AvionBankLogo from '../../../assets/images/avionbank_logo2.png';
@@ -6,16 +7,21 @@ import AddExpense from './AddExpense';
 import expenseData from '../../../assets/data/expense-list.json'
 
 
+
 function Dashboard(props){
     const {loginCredentials, usernameHolder, accountUserCredentials, selectedAccount, buttonHolder} = props
     const sameUserName = loginCredentials.find(credential => credential.user_name === usernameHolder())
     const index = loginCredentials.indexOf(sameUserName); 
+
 
     const totalBalance = accountUserCredentials.reduce((total, account) => {
         const balance = account.initial_balance;
         return total + balance;
     }, 0);
     
+
+
+
 
     const onMouseViewUsers = () => {
         const onMouseViewUsers = document.querySelector('.viewAccHolderToolTip');
@@ -94,10 +100,14 @@ function Dashboard(props){
         <div className='mainContainer' >
             <h1 className='containerTitle'>Dashboard</h1>
             <div className='adbtDiv'>
+                <NavLink to='/loginPage'className='logoutButton' onClick={() => alert("Thank you for logging in!")}>
+                    <i className="fa-solid fa-arrow-right-from-bracket" id="logout"></i>
+                </NavLink>
                 <button className='adminButton'
                     onClick={openAddUser}>
                         <i className="fa-solid fa-user-gear" id="addUser"></i>
                 </button>
+                
             </div>
             <div className='userInfo'>
                 <div className='accountManager'>
@@ -192,7 +202,7 @@ function Dashboard(props){
                 <button className='Withdraw buttons' onClick={openChooseAcc}>Widthdraw</button>
                 <button className='Deposit buttons' onClick={openChooseAcc}>Deposit</button>
                 <button className='Transfer buttons' onClick={openTransferWindow}>Transfer</button>
-                {<button onClick={toggleBudgetVisibility} className='buttons'>Budget</button> }
+                <button onClick={toggleBudgetVisibility} className='Budget buttons'>Budget</button>
             </div>
       </div>
     )

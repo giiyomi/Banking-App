@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 
 const MainPage = (props) => {
-  const {loginCredentials,usernameHolder,setAccUserArrays,setAccUserId,accountUserCredentials} = props
+  const {loginCredentials,usernameHolder/*,setAccUserArrays,setAccUserId,accountUserCredentials*/} = props
   let [selectedAccount, setSelectedAccount] = useState(null);
   const [depositOrWidthdraw, buttonHolder] = useState("");
   const [updatedBalAfterDeposit, getNewBalAfterDep] = useState(null);
@@ -22,6 +22,22 @@ const MainPage = (props) => {
   const [updatedBalAfterSend, getNewBalAfterSend] = useState(null);
   const [updatedBalAfterReceive, getNewBalAfterReceive] = useState(null);
   let [selectedReceviver, setSelectedReceiver] = useState(null)
+
+  const findUserArray = loginCredentials.find(credential => credential.user_name === usernameHolder())
+  const index = loginCredentials.indexOf(findUserArray); 
+  const [accountUserCredentials/* BUONG ARRAY NG ACCOUNT HOLDERS */, accUserArray] = useState(loginCredentials[index].acc_users);
+
+
+  const setAccUserArrays = (newUsers) => {
+    accUserArray((prevUsers) => {
+      const combinedUserCredentials = [...prevUsers, newUsers];
+      console.log(combinedUserCredentials)
+      return combinedUserCredentials;
+    });
+  }
+
+
+
   
 
   const depositCalculator = (newBalance) => {
@@ -69,7 +85,7 @@ const MainPage = (props) => {
 
       <EnrollUser
         setAccUserArrays={setAccUserArrays}
-        setAccUserId={setAccUserId} // Pinasa dito yung # of arrays ng Account Holders
+        setAccUserId={accountUserCredentials.length} // Pinasa dito yung # of arrays ng Account Holders
         accountUserCredentials={accountUserCredentials} // Pinasa dito yung buong array ng Account Holders
       />
 

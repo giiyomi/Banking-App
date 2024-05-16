@@ -3,7 +3,7 @@ import MainPage from './pages/MainPage/MainPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import loginCredentialsArray from './assets/data/loginCredentials.json';
-import accountUsersArray from './assets/data/accountUsers.json'
+// import accountUsersArray from './assets/data/accountUsers.json'
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [loginCredentials, setNewCredentials] = useState(loginCredentialsArray);
-  const [accountUserCredentials/* BUONG ARRAY NG ACCOUNT HOLDERS */, accUserArray] = useState(accountUsersArray);
+  // const [accountUserCredentials/* BUONG ARRAY NG ACCOUNT HOLDERS */, accUserArray] = useState(loginCredentialsArray);
   const [userName, findUserName] = useState('');
 
 
@@ -24,13 +24,13 @@ function App() {
     });
   }
   //ITO NAMAN ANG NAGPUPUSH SA MGA NAGEGENERATE NA OBJECT AFTER MAG CREATE NG ACCOUNT HOLDERS
-  const setAccUserArrays = (newUsers) => {
-    accUserArray((prevUsers) => {
-      const combinedUserCredentials = [...prevUsers, newUsers];
-      console.log(combinedUserCredentials)
-      return combinedUserCredentials;
-    });
-  }
+  // const setAccUserArrays = (newUsers) => {
+  //   accUserArray((prevUsers) => {
+  //     const combinedUserCredentials = [...prevUsers, newUsers];
+  //     console.log(combinedUserCredentials)
+  //     return combinedUserCredentials;
+  //   });
+  // }
 
   //GINAWA KO LANG TO PARA MAKUHA KO KUNG ANONG PANGALAN NG ACCOUNT MANAGER NA NAKALOG IN AT MAIPASA SA MAINPAGE
   const usernameHolder = () => {
@@ -65,9 +65,9 @@ function App() {
               <MainPage
                 loginCredentials={loginCredentials}
                 usernameHolder={usernameHolder}
-                setAccUserArrays={setAccUserArrays}
-                setAccUserId={accountUserCredentials.length}
-                accountUserCredentials={accountUserCredentials}
+                // setAccUserArrays={setAccUserArrays}
+                // setAccUserId={accountUserCredentials.length}
+                // accountUserCredentials={accountUserCredentials}
                 >
               </MainPage>}>
           </Route>

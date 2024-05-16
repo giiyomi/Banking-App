@@ -23,7 +23,7 @@
 
 .adbtDiv{
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   padding: 10px 20px;
   width: 100%;
   position: relative;
@@ -65,6 +65,48 @@
   outline: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+
+.logoutButton{
+  background: rgb(254, 82, 82);
+  margin-left: 4%;
+  padding: 10px;
+  width: 8%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.4);
+  color:white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.logoutButton i{
+  height: 70%;
+  width: 100%;
+  transform: rotate(180deg);
+}
+
+.logoutButton::before{
+  content: "Log out";
+  height: 35px;
+  position: absolute;
+  font-size: 16px;
+  text-wrap: nowrap;
+  color:white;
+  background-color: rgba(0,0,0,.5);
+  transform: translateX(60px) ;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+  opacity: 0;
+}
+.logoutButton:hover::before{
+  opacity: 1;
+  transition: 1s;
 }
 
 .manualDisplay{
@@ -378,6 +420,11 @@
     padding: 5px 10px;
     width: 10%;
   }
+  .logoutButton{
+    margin-right: 4%;
+    padding: 5px 10px;
+    width: 10%;
+  }
 
   .accountManager h6{
     font-size: .9rem;
@@ -472,6 +519,11 @@
     padding: 5px 10px;
     width: 11%;
   }
+  .logoutButton{
+    margin-right: 4%;
+    padding: 5px 10px;
+    width: 11%;
+  }
   .personalBalance h2{
     font-size: 23px;
   }
@@ -534,6 +586,10 @@
   .adbtDiv{
     padding: 0px 10px;
   }
+
+  .logoutButton i{
+    font-size: 13px;
+  }
   .addAccountUserTooltip{
     padding: 2px;
     transform: translateX(60px) translateY(50px);
@@ -541,24 +597,23 @@
     z-index: 999;
     padding-inline: 5px;
   }
+  
+
+
   .adminButton{
-    background: rgb(254, 82, 82);
-    margin-right: 4%;
-    width: 12%;
-    border-radius: 8px;
-  }
-  .adminButton{
-    background: rgb(254, 82, 82);
-    margin-right: 4%;
     padding: 0px;
     width: 12%;
-    box-shadow: 5px 5px 5px rgba(0,0,0,.4);
-    color:white;
-    border: none;
-    outline: none;
     border-radius: 8px;
-    cursor: pointer;
   }
+
+  .logoutButton{
+    padding: 0px;
+    width: 12%;
+  }
+  .logoutButton i{
+    height: 50%;
+  }
+  
   .userInfo{
     padding:0px;
   }
@@ -605,6 +660,12 @@ font-size: 10px;
     height: 45px;
     font-size: 10px;
   }  
+
+  .Budget{
+    width: 27%;
+    height: 45px;
+    font-size: 10px;
+  }
 
 }
 
@@ -864,198 +925,10 @@ font-size: 10px;
     height: 45px;
     font-size: 10px;
   }  
+  .Budget{
+    width: 27%;
+    height: 45px;
+    font-size: 10px;
+  }  
 }
 
-
-  /* @media   (max-width: 1200px) and (max-height: 800px) {
-    .mainContainer{
-
-      height: 500px;
-      width: 600px;
-    }
-    .containerTitle{
-      padding: 0;
-      margin: 0;
-    }
-    .userInfo{
-      padding: 0px;
-    }
-  
-    .userDetail3{
-      margin-top: 5%;
-  
-    }
-    
-  
-    .accountManager h6{
-      font-size: .9rem;
-    }
-  
-    .adbtDiv{
-      padding:5px 10px;
-    }
-    .adminButton{
-  
-      border-radius: 5px;
-      padding: 2px;
-      width: 7%;
-    }
-    .personalBalance h2{
-      font-size: 23px;
-    }
-    .overallBalance h6{
-      font-weight: normal;
-      font-size: 13px;
-    }
-    .goldChip img{
-      width: 45%;
-      height: 80%;
-    }
-      .goldChip img{
-    margin-top: 0%;
-    padding-left: 25%;
-    width: 50%;
-    height: 30%;
-  }
-    .avionBankLogo img{
-      width:80%;
-      margin-bottom: 5%;
-    }
-    .buttons{
-      height:80px;
-    }
-  } */
-
-  
-
-  /* @media (max-width: 550px) and (max-height: 815px){
-    .mainContainer{
-      height: 500px;
-      width: 440px;
-      margin: auto;
-      padding-inline: 40px;
-    }
-    .userDetail3{
-
-      padding: 15px;
-      border-top-right-radius: 8px;
-      border-top-left-radius: 8px;
-      border-bottom-right-radius: 0px;
-      border-bottom-left-radius: 0px;
-      box-shadow: 1px -3px 10px;
-    }
-
-    .buttons{
-      height:80px;
-    }
-
-    .addAccountUserTooltip{
-      font-size: 14px;
-    }
-  
-    .adminButton{
-      margin-right: 4%;
-      padding: 5px 10px;
-      width: 11%;
-    }
-    .personalBalance h2{
-      font-size: 23px;
-    }
-    .overallBalance h6{
-      font-weight: normal;
-      font-size: 13px;
-  
-    }
-    .goldChip{
-      align-items: flex-start;
-    }
-    .goldChip img{
-      margin-top: 8%;
-      padding-left:15%;
-      width: 50%;
-      height: 75%;
-
-    }
-    .avionBankLogo img{
-      width:80%;
-      margin-bottom: 5%;
-    }
-  }
-
-
- @media (max-width: 550px) and (max-height: 815px){
-  .mainContainer{
-    height: 400px;
-    width: 350px;
-    margin: auto;
-    padding-inline: 40px;
-  }
-
-  .userDetail3{
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 1px 5px 10px;
-  }
-  .userDetail3{
-    margin-bottom: 0px;
-    padding: 15px;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    box-shadow: 1px -3px 10px;
-  }
-
-  .buttons{
-    height:80px;
-  }
-
-  .addAccountUserTooltip{
-    font-size: 14px;
-  }
-
-  .adminButton{
-    margin-right: 4%;
-    padding: 5px 10px;
-    width: 11%;
-  }
-  .personalBalance h2{
-    font-size: 23px;
-  }
-  .overallBalance h6{
-    font-weight: normal;
-    font-size: 13px;
-  }
-
-  .goldChip{
-    align-items: flex-start;
-  }
-  .goldChip img{
-    margin-top: 8%;
-    padding-left:15%;
-    width: 50%;
-    height: 75%;
-    }
-
-  .avionBankLogo img{
-    width:80%;
-    margin-bottom: 5%;
-  }
-
-  .Withdraw{
-    height:70px;
-  }
-
-  .Deposit{
-    height:70px;
-  }
-
-  .Transfer{
-    height:70px;
-  }
-
-}
- */
-
-
-    
